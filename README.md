@@ -1,156 +1,49 @@
 # ubuntu
 
-#!/bin/bash
+# Skrypt Instalacyjny na Ubuntu
 
-# Aktualizacja listy pakietów i uaktualnienie systemu
-sudo nala update
-sudo nala upgrade -y
+Ten skrypt ma na celu zautomatyzowanie instalacji i konfiguracji różnych programów oraz usług na systemie Ubuntu. Wykorzystuje `nala` jako menedżera pakietów, instalując niezbędne oprogramowanie, konfigurując shell `fish`, uruchamiając usługę Cockpit oraz konfigurując `samba`, `ufw`, `ssh`, `pyenv` i wiele innych.
 
-# Dodanie repozytorium dla Nala
-echo "deb [trusted=yes] http://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+## Funkcjonalność
 
-# Dodanie klucza GPG dla repozytorium
-wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar.gpg
+1. **Aktualizacja systemu**
+   - Aktualizacja listy pakietów (`nala update`) i zaktualizowanie wszystkich zainstalowanych pakietów (`nala upgrade`).
 
-# Aktualizacja listy pakietów i instalacja Nala
-sudo nala update
-sudo nala install -y nala
+2. **Instalacja `nala`**
+   - Dodanie repozytorium Volian Scar i instalacja `nala`.
 
-# Używanie Nala do instalacji niezbędnych programów
-sudo nala install -y \
-  git \
-  curl \
-  vim \
-  btop \
-  python3 \
-  python3-pip \
-  fish \
-  cockpit \
-  samba \
-  bat \
-  neofetch \
-  openssh-server \
-  postgresql \
-  postgresql-contrib \
-  build-essential \
-  libssl-dev \
-  zlib1g-dev \
-  libbz2-dev \
-  libreadline-dev \
-  libsqlite3-dev \
-  wget \
-  libncurses5-dev \
-  libgdbm-dev \
-  liblzma-dev \
-  sqlite3 \
-  libffi-dev \
-  libtk8.6 \
-  libgdbm-compat-dev \
-  mc
+3. **Instalacja niezbędnych pakietów**
+   - Instalacja m.in. `git`, `curl`, `vim`, `btop`, `python3`, `fish`, `cockpit`, `samba`, `bat`, `neofetch`, `openssh-server`, `postgresql`, `mc` i wielu innych.
 
-# Instalacja pyenv
-echo "Instalowanie pyenv..."
-curl https://pyenv.run | bash
+4. **Konfiguracja `pyenv`**
+   - Instalacja `pyenv` i jego konfiguracja dla `fish`.
+   - Instalacja najnowszej wersji Pythona i ustawienie jej jako globalnej.
 
-# Konfiguracja pyenv dla Fish
-set -U fish_user_paths $fish_user_paths $HOME/.pyenv/bin
-echo 'set -gx PYENV_ROOT $HOME/.pyenv' >> ~/.config/fish/config.fish
-echo 'set -gx PATH $PYENV_ROOT/bin $PATH' >> ~/.config/fish/config.fish
-echo 'status --is-interactive; and . (pyenv init --path)' >> ~/.config/fish/config.fish
-echo 'status --is-interactive; and . (pyenv init -)' >> ~/.config/fish/config.fish
-echo 'status --is-interactive; and . (pyenv virtualenv-init -)' >> ~/.config/fish/config.fish
+5. **Konfiguracja powłoki `fish`**
+   - Instalacja i konfiguracja `Oh My Posh` z wybranym motywem.
+   - Dodanie aliasu `bat` dla `batcat`.
+   - Ustawienie `neofetch` do wyświetlania przy każdym uruchomieniu terminala.
 
-# Uaktualnienie konfiguracji Fish Shell
-source ~/.config/fish/config.fish
+6. **Konfiguracja `samba`**
+   - Udostępnienie katalogu domowego użytkownika jako zasobu sieciowego.
 
-# Pobranie i instalacja najnowszej wersji Pythona
-echo "Pobieranie i instalacja najnowszej wersji Pythona..."
-LATEST_PYTHON_VERSION=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')
-pyenv install $LATEST_PYTHON_VERSION
-pyenv global $LATEST_PYTHON_VERSION
+7. **Konfiguracja `ufw`**
+   - Instalacja i konfiguracja `ufw` (Uncomplicated Firewall).
+   - Dodanie reguł zapory dla `ssh`, `samba` i `cockpit`.
 
-# Zmiana domyślnej powłoki na Fish
-chsh -s /usr/bin/fish
+8. **Konfiguracja `ssh`**
+   - Instalacja serwera SSH.
 
-# Instalacja Oh My Posh
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-sudo chmod +x /usr/local/bin/oh-my-posh
+9. **Konfiguracja PostgreSQL**
+   - Instalacja PostgreSQL i ustawienie hasła dla użytkownika `postgres`.
 
-# Pobranie motywu do Oh My Posh z GitHuba
-mkdir -p ~/.config/oh-my-posh
-wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/jandedobbeleer.omp.json -O ~/.config/oh-my-posh/theme.json
+10. **Dodanie interfejsu dummy za pomocą `nmcli`**
+    - Dodanie interfejsu sieciowego typu dummy z przykładową konfiguracją IP.
 
-# Konfiguracja Fish Shell do używania Oh My Posh
-echo 'eval (oh-my-posh init fish --config ~/.config/oh-my-posh/theme.json)' >> ~/.config/fish/config.fish
+## Użycie
 
-# Dodanie aliasu dla batcat jako bat
-echo 'alias bat="batcat"' >> ~/.config/fish/config.fish
-
-# Dodanie neofetch do pliku konfiguracyjnego Fish Shell, aby wyświetlał się przy każdym uruchomieniu terminala
-echo 'neofetch' >> ~/.config/fish/config.fish
-
-# Uruchomienie i włączenie Cockpit
-sudo systemctl enable --now cockpit.socket
-
-# Konfiguracja Samba do udostępnienia katalogu domowego użytkownika
-# Tworzenie kopii zapasowej oryginalnego pliku konfiguracyjnego
-sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
-
-# Pobranie nazwy użytkownika i ścieżki do katalogu domowego
-USERNAME=$(whoami)
-USER_HOME="/home/$USERNAME"
-
-# Dodanie konfiguracji do smb.conf
-sudo bash -c "cat << EOF >> /etc/samba/smb.conf
-
-[Home]
-   path = $USER_HOME
-   browsable = yes
-   read only = no
-   valid users = $USERNAME
-EOF"
-
-# Restartowanie usługi Samba
-sudo systemctl restart smbd
-
-# Instalacja i konfiguracja UFW
-sudo apt install -y ufw
-
-# Włączenie UFW i dodanie reguł
-sudo ufw enable
-sudo ufw allow OpenSSH
-sudo ufw allow 9090/tcp  # Port dla Cockpit
-sudo ufw allow Samba      # Porty dla Samba (często 137, 138, 139, 445)
-sudo ufw allow 5432/tcp   # Port dla PostgreSQL
-sudo ufw reload
-
-# Wyświetlenie statusu UFW
-sudo ufw status verbose
-
-# Pobranie hasła do PostgreSQL od użytkownika
-echo -n "Podaj hasło dla użytkownika postgres w PostgreSQL: "
-read -s POSTGRES_PASSWORD
-echo
-
-# Konfiguracja PostgreSQL
-echo "Konfigurowanie PostgreSQL..."
-sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '${POSTGRES_PASSWORD}';"
-
-# Wyświetlenie adresu do Cockpit
-IP_ADDRESS=$(hostname -I | awk '{print $1}')
-echo "Cockpit został zainstalowany i uruchomiony."
-echo "Aby uzyskać dostęp do interfejsu, przejdź do:"
-echo "http://$IP_ADDRESS:9090"
-
-# Wyświetlenie informacji o współdzielonym katalogu domowym użytkownika
-echo "Samba została zainstalowana i skonfigurowana."
-echo "Katalog domowy użytkownika $USERNAME jest udostępniony pod adresem: \\\\$IP_ADDRESS\\Home"
-
-# Konfiguracja interfejsu sieciowego typu dummy za pomocą nmcli
-echo "Dodawanie interfejsu dummy za pomocą nmcli..."
-sudo nmcli con add type dummy con-name fake ifname fake0 ip4 1.2.3.4/24 gw4 1.2.3.1
-
-# Dodatkowe kroki konfiguracyjne (jeśli są potrzebne)
-# ...
-
-echo "Instalacja zakończona. Uruchom ponownie lub zaloguj się ponownie, aby zastosować zmiany."
+1. Zapisz skrypt jako `setup_script.sh`.
+2. Nadaj skryptowi prawa wykonywania:
+   ```bash
+   chmod +x setup_script.sh
+3. sudo ./setup_script.sh

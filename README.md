@@ -83,5 +83,6 @@ Skrypt dodatkowo instaluje i konfiguruje `pyenv` oraz `Oh My Posh` i ich zależn
 2. Nadaj skryptowi prawa wykonywania:
    ```bash
    chmod +x setup_script.sh
-3. ```bash
+3. Uruchom skrypt:
+   ```bash
    sudo ./setup_script.sh

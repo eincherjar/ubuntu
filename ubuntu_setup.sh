@@ -18,7 +18,6 @@ sudo nala install -y nala
 sudo nala install -y \
   git \
   curl \
-  vim \
   btop \
   python3 \
   python3-pip \

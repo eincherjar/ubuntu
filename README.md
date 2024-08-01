@@ -11,33 +11,32 @@ Poniżej znajduje się lista pakietów instalowanych przez skrypt:
 1. **nala** - alternatywny menedżer pakietów dla `apt`.
 2. **git** - system kontroli wersji.
 3. **curl** - narzędzie do transferu danych z URL.
-4. **vim** - zaawansowany edytor tekstu.
-5. **btop** - narzędzie do monitorowania zasobów systemowych (alternatywa dla `htop`).
-6. **python3** - język programowania Python 3.
-7. **python3-pip** - menedżer pakietów dla Pythona 3.
-8. **fish** - interaktywna powłoka Unix.
-9. **cockpit** - interfejs webowy do zarządzania systemem.
-10. **samba** - oprogramowanie do współdzielenia plików i drukarek.
-11. **bat** - narzędzie do wyświetlania plików tekstowych z kolorowaniem składni (alias dla `batcat`).
-12. **neofetch** - narzędzie do wyświetlania informacji o systemie.
-13. **openssh-server** - serwer SSH.
-14. **postgresql** - system zarządzania bazami danych SQL.
-15. **postgresql-contrib** - dodatkowe moduły i narzędzia dla PostgreSQL.
-16. **build-essential** - pakiet narzędzi do kompilacji oprogramowania.
-17. **libssl-dev** - biblioteka SSL (deweloperska wersja).
-18. **zlib1g-dev** - biblioteka kompresji (deweloperska wersja).
-19. **libbz2-dev** - biblioteka kompresji Bzip2 (deweloperska wersja).
-20. **libreadline-dev** - biblioteka do zarządzania wprowadzaniem linii tekstu (deweloperska wersja).
-21. **libsqlite3-dev** - biblioteka SQLite (deweloperska wersja).
-22. **wget** - narzędzie do pobierania plików z sieci.
-23. **libncurses5-dev** - biblioteka Ncurses (deweloperska wersja).
-24. **libgdbm-dev** - biblioteka GDBM (deweloperska wersja).
-25. **liblzma-dev** - biblioteka LZMA (deweloperska wersja).
-26. **sqlite3** - system zarządzania bazą danych SQLite.
-27. **libffi-dev** - biblioteka FFI (deweloperska wersja).
-28. **libtk8.6** - biblioteka Tk (wersja 8.6).
-29. **libgdbm-compat-dev** - biblioteka GDBM (wersja kompatybilna, deweloperska).
-30. **mc** - menedżer plików Midnight Commander.
+4. **btop** - narzędzie do monitorowania zasobów systemowych (alternatywa dla `htop`).
+5. **python3** - język programowania Python 3.
+6. **python3-pip** - menedżer pakietów dla Pythona 3.
+7. **fish** - interaktywna powłoka Unix.
+8. **cockpit** - interfejs webowy do zarządzania systemem.
+9. **samba** - oprogramowanie do współdzielenia plików i drukarek.
+10. **bat** - narzędzie do wyświetlania plików tekstowych z kolorowaniem składni (alias dla `batcat`).
+11. **neofetch** - narzędzie do wyświetlania informacji o systemie.
+12. **openssh-server** - serwer SSH.
+13. **postgresql** - system zarządzania bazami danych SQL.
+14. **postgresql-contrib** - dodatkowe moduły i narzędzia dla PostgreSQL.
+15. **build-essential** - pakiet narzędzi do kompilacji oprogramowania.
+16. **libssl-dev** - biblioteka SSL (deweloperska wersja).
+17. **zlib1g-dev** - biblioteka kompresji (deweloperska wersja).
+18. **libbz2-dev** - biblioteka kompresji Bzip2 (deweloperska wersja).
+10. **libreadline-dev** - biblioteka do zarządzania wprowadzaniem linii tekstu (deweloperska wersja).
+20. **libsqlite3-dev** - biblioteka SQLite (deweloperska wersja).
+21. **wget** - narzędzie do pobierania plików z sieci.
+22. **libncurses5-dev** - biblioteka Ncurses (deweloperska wersja).
+23. **libgdbm-dev** - biblioteka GDBM (deweloperska wersja).
+24. **liblzma-dev** - biblioteka LZMA (deweloperska wersja).
+25. **sqlite3** - system zarządzania bazą danych SQLite.
+26. **libffi-dev** - biblioteka FFI (deweloperska wersja).
+27. **libtk8.6** - biblioteka Tk (wersja 8.6).
+28. **libgdbm-compat-dev** - biblioteka GDBM (wersja kompatybilna, deweloperska).
+29. **mc** - menedżer plików Midnight Commander.
 
 Skrypt dodatkowo instaluje i konfiguruje `pyenv` oraz `Oh My Posh` i ich zależności, które nie są bezpośrednio pakietami systemowymi, lecz skryptami lub narzędziami instalowanymi niezależnie.
 
@@ -50,7 +49,7 @@ Skrypt dodatkowo instaluje i konfiguruje `pyenv` oraz `Oh My Posh` i ich zależn
    - Dodanie repozytorium Volian Scar i instalacja `nala`.
 
 3. **Instalacja niezbędnych pakietów**
-   - Instalacja m.in. `git`, `curl`, `vim`, `btop`, `python3`, `fish`, `cockpit`, `samba`, `bat`, `neofetch`, `openssh-server`, `postgresql`, `mc` i wielu innych.
+   - Instalacja m.in. `git`, `curl`, `btop`, `python3`, `fish`, `cockpit`, `samba`, `bat`, `neofetch`, `openssh-server`, `postgresql`, `mc` i wielu innych.
 
 4. **Konfiguracja `pyenv`**
    - Instalacja `pyenv` i jego konfiguracja dla `fish`.

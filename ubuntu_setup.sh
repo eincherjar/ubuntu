@@ -73,12 +73,13 @@ chsh -s /usr/bin/fish
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
 
-# Pobranie motywu do Oh My Posh z GitHuba
+# Konfiguracja motywu Oh My Posh
+# Zakładamy, że plik ein-oh-my-posh.toml znajduje się w tym samym katalogu co skrypt
 mkdir -p ~/.config/oh-my-posh
-wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/jandedobbeleer.omp.json -O ~/.config/oh-my-posh/theme.json
+cp ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
 
-# Konfiguracja Fish Shell do używania Oh My Posh
-echo 'eval (oh-my-posh init fish --config ~/.config/oh-my-posh/theme.json)' >> ~/.config/fish/config.fish
+# Konfiguracja Fish Shell do używania Oh My Posh z lokalnym motywem
+echo 'eval (oh-my-posh init fish --config ~/.config/oh-my-posh/theme.toml)' >> ~/.config/fish/config.fish
 
 # Dodanie aliasu dla batcat jako bat
 echo 'alias bat="batcat"' >> ~/.config/fish/config.fish
@@ -111,7 +112,7 @@ EOF"
 sudo systemctl restart smbd
 
 # Instalacja i konfiguracja UFW
-sudo apt install -y ufw
+sudo nala install -y ufw
 
 # Włączenie UFW i dodanie reguł
 sudo ufw enable

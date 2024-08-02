@@ -39,11 +39,15 @@ sudo nala install -y \
   libffi-dev \
   libtk8.6 \
   libgdbm-compat-dev \
-  mc
+  mc \
+  qemu-guest-agent
 
 # Aktualizacja listy pakietów i instalacja Nala
 sudo nala update
 sudo nala install -y nala
+
+# Proxmox 
+sudo systemctl enable qemu-guest-agent
 
 # Zmiana domyślnej powłoki na Fish
 chsh -s /usr/bin/fish

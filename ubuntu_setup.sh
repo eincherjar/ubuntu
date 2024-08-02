@@ -174,13 +174,16 @@ sudo nmcli con add type dummy con-name fake ifname fake0 ip4 1.2.3.4/24 gw4 1.2.
 echo "Instalacja zakończona. Uruchom ponownie lub zaloguj się ponownie, aby zastosować zmiany."
 
 # Usuwanie wszystkich plików oraz folderu nadrzędnego "ubuntu"
-CURRENT_DIR=$(pwd)
-PARENT_DIR=$(basename "$CURRENT_DIR")
 
-if [ "$PARENT_DIR" = "ubuntu" ]; then
-  cd .. # Przejście do katalogu nadrzędnego
-  rm -rf "$PARENT_DIR" # Usunięcie folderu "ubuntu" i jego zawartości
-  echo "Folder $PARENT_DIR i wszystkie jego pliki zostały usunięte."
-else
-  echo "Folder nadrzędny nie jest 'ubuntu'. Nie usunięto żadnych plików."
-fi
+rm -rf ubuntu
+
+# CURRENT_DIR=$(pwd)
+# PARENT_DIR=$(basename "$CURRENT_DIR")
+
+# if [ "$PARENT_DIR" = "ubuntu" ]; then
+#   cd .. # Przejście do katalogu nadrzędnego
+#   rm -rf "$PARENT_DIR" # Usunięcie folderu "ubuntu" i jego zawartości
+#   echo "Folder $PARENT_DIR i wszystkie jego pliki zostały usunięte."
+# else
+#   echo "Folder nadrzędny nie jest 'ubuntu'. Nie usunięto żadnych plików."
+# fi

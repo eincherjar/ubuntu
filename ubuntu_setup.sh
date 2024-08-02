@@ -1,18 +1,14 @@
 #!/bin/bash
 
 # Aktualizacja listy pakietów i uaktualnienie systemu
-sudo nala update
-sudo nala upgrade -y
+sudo apt update
+sudo apt upgrade -y
 
 # Dodanie repozytorium dla Nala
 echo "deb [trusted=yes] http://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
 
 # Dodanie klucza GPG dla repozytorium
 wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar.gpg
-
-# Aktualizacja listy pakietów i instalacja Nala
-sudo nala update
-sudo nala install -y nala
 
 # Używanie Nala do instalacji niezbędnych programów
 sudo nala install -y \
@@ -45,29 +41,15 @@ sudo nala install -y \
   libgdbm-compat-dev \
   mc
 
-# Instalacja pyenv
-echo "Instalowanie pyenv..."
-curl https://pyenv.run | bash
-
-# Konfiguracja pyenv dla Fish
-set -U fish_user_paths $fish_user_paths $HOME/.pyenv/bin
-echo 'set -gx PYENV_ROOT $HOME/.pyenv' >> ~/.config/fish/config.fish
-echo 'set -gx PATH $PYENV_ROOT/bin $PATH' >> ~/.config/fish/config.fish
-echo 'status --is-interactive; and . (pyenv init --path)' >> ~/.config/fish/config.fish
-echo 'status --is-interactive; and . (pyenv init -)' >> ~/.config/fish/config.fish
-echo 'status --is-interactive; and . (pyenv virtualenv-init -)' >> ~/.config/fish/config.fish
-
-# Uaktualnienie konfiguracji Fish Shell
-source ~/.config/fish/config.fish
-
-# Pobranie i instalacja najnowszej wersji Pythona
-echo "Pobieranie i instalacja najnowszej wersji Pythona..."
-LATEST_PYTHON_VERSION=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')
-pyenv install $LATEST_PYTHON_VERSION
-pyenv global $LATEST_PYTHON_VERSION
+# Aktualizacja listy pakietów i instalacja Nala
+sudo nala update
+sudo nala install -y nala
 
 # Zmiana domyślnej powłoki na Fish
 chsh -s /usr/bin/fish
+
+# Uaktualnienie konfiguracji Fish Shell
+source ~/.config/fish/config.fish
 
 # Instalacja Oh My Posh
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
@@ -86,6 +68,27 @@ echo 'alias bat="batcat"' >> ~/.config/fish/config.fish
 
 # Dodanie neofetch do pliku konfiguracyjnego Fish Shell, aby wyświetlał się przy każdym uruchomieniu terminala
 echo 'neofetch' >> ~/.config/fish/config.fish
+
+# Instalacja pyenv
+echo "Instalowanie pyenv..."
+curl https://pyenv.run | bash
+
+# Konfiguracja pyenv dla Fish
+set -U fish_user_paths $fish_user_paths $HOME/.pyenv/bin
+echo 'set -gx PYENV_ROOT $HOME/.pyenv' >> ~/.config/fish/config.fish
+echo 'set -gx PATH $PYENV_ROOT/bin $PATH' >> ~/.config/fish/config.fish
+echo 'status --is-interactive; and . (pyenv init --path)' >> ~/.config/fish/config.fish
+echo 'status --is-interactive; and . (pyenv init -)' >> ~/.config/fish/config.fish
+echo 'status --is-interactive; and . (pyenv virtualenv-init -)' >> ~/.config/fish/config.fish
+
+# Pobranie i instalacja najnowszej wersji Pythona
+echo "Pobieranie i instalacja najnowszej wersji Pythona..."
+LATEST_PYTHON_VERSION=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')
+pyenv install $LATEST_PYTHON_VERSION
+pyenv global $LATEST_PYTHON_VERSION
+
+# Uaktualnienie konfiguracji Fish Shell
+source ~/.config/fish/config.fish
 
 # Uruchomienie i włączenie Cockpit
 sudo systemctl enable --now cockpit.socket

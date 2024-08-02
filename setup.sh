@@ -88,6 +88,8 @@ sudo ufw allow Samba      # Porty dla Samba (często 137, 138, 139, 445)
 sudo ufw allow 5432/tcp   # Port dla PostgreSQL
 sudo ufw reload
 
+sudo smbpasswd -a $USERNAME
+
 # Wyświetlenie statusu UFW
 sudo ufw status verbose
 

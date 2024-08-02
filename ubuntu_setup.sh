@@ -64,9 +64,6 @@ chsh -s /usr/bin/fish
 mkdir ~/.config
 mkdir ~/.config/fish
 touch ~/.config/fish/config.fish
-
-mkdir ~/.config/oh-my-posh
-touch ~/.config/oh-my-posh/theme.toml
 #source ~/.config/fish/config.fish
 
 
@@ -78,17 +75,19 @@ sudo chmod +x /usr/local/bin/oh-my-posh
 # Konfiguracja motywu Oh My Posh
 echo "Konfiguracja motywu Oh My Posh..."
 # Zakładamy, że plik ein-oh-my-posh.toml znajduje się w tym samym katalogu co skrypt
-mkdir -p ~/.config/oh-my-posh
+mkdir ~/.config/oh-my-posh
 cp ubuntu/ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
 
 # Konfiguracja Fish Shell do używania Oh My Posh z lokalnym motywem
-echo 'oh-my-posh init fish --config ~/.config/oh-my-posh/theme.toml' >> ~/.config/fish/config.fish
+echo 'oh-my-posh init fish --config ~/.config/oh-my-posh/theme.toml | source' >> ~/.config/fish/config.fish
 
 # Dodanie aliasu dla batcat jako bat
 echo 'alias bat="batcat"' >> ~/.config/fish/config.fish
 
 # Dodanie neofetch do pliku konfiguracyjnego Fish Shell, aby wyświetlał się przy każdym uruchomieniu terminala
 echo 'neofetch' >> ~/.config/fish/config.fish
+
+. ~/.config/fish/config.fish
 
 # Instalacja pyenv
 # echo "Instalowanie pyenv..."

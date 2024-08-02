@@ -55,66 +55,6 @@ sudo nala install -y \
 # Proxmox 
 # sudo systemctl enable qemu-guest-agent
 
-# Zmiana domyślnej powłoki na Fish
-echo "Zmiana domyślnej powłoki na Fish..."
-chsh -s /usr/bin/fish
-# exec fish
-
-# Uaktualnienie konfiguracji Fish Shell
-mkdir ~/.config
-
-mkdir ~/.config/oh-my-posh
-
-mkdir ~/.config/fish
-touch ~/.config/fish/config.fish
-#source ~/.config/fish/config.fish
-
-
-# Instalacja Oh My Posh
-echo "Instalacja Oh My Posh..."
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-sudo chmod +x /usr/local/bin/oh-my-posh
-
-# Konfiguracja motywu Oh My Posh
-echo "Konfiguracja motywu Oh My Posh..."
-# Zakładamy, że plik ein-oh-my-posh.toml znajduje się w tym samym katalogu co skrypt
-cp ubuntu/ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
-
-# Konfiguracja Fish Shell do używania Oh My Posh z lokalnym motywem
-echo 'oh-my-posh init fish --config ~/.config/oh-my-posh/theme.toml | source' >> ~/.config/fish/config.fish
-
-# Dodanie aliasu dla batcat jako bat
-echo 'alias bat="batcat"' >> ~/.config/fish/config.fish
-echo 'alias cls="clear"' >> ~/.config/fish/config.fish
-
-# Dodanie neofetch do pliku konfiguracyjnego Fish Shell, aby wyświetlał się przy każdym uruchomieniu terminala
-echo 'neofetch' >> ~/.config/fish/config.fish
-
-# . ~/.config/fish/config.fish
-
-exec fish
-
-# Instalacja pyenv
-# echo "Instalowanie pyenv..."
-# curl https://pyenv.run | bash
-
-# Konfiguracja pyenv dla Fish
-# set -U fish_user_paths $fish_user_paths $HOME/.pyenv/bin
-# echo 'set -gx PYENV_ROOT $HOME/.pyenv' >> ~/.config/fish/config.fish
-# echo 'set -gx PATH $PYENV_ROOT/bin $PATH' >> ~/.config/fish/config.fish
-# echo 'status --is-interactive; and . (pyenv init --path)' >> ~/.config/fish/config.fish
-# echo 'status --is-interactive; and . (pyenv init -)' >> ~/.config/fish/config.fish
-# echo 'status --is-interactive; and . (pyenv virtualenv-init -)' >> ~/.config/fish/config.fish
-
-# Pobranie i instalacja najnowszej wersji Pythona
-# echo "Pobieranie i instalacja najnowszej wersji Pythona..."
-# LATEST_PYTHON_VERSION=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')
-# pyenv install $LATEST_PYTHON_VERSION
-# pyenv global $LATEST_PYTHON_VERSION
-
-# Uaktualnienie konfiguracji Fish Shell
-# source ~/.config/fish/config.fish
-
 # Uruchomienie i włączenie Cockpit
 sudo systemctl enable --now cockpit.socket
 
@@ -173,13 +113,66 @@ echo "Katalog domowy użytkownika $USERNAME jest udostępniony pod adresem: \\\\
 echo "Dodawanie interfejsu dummy za pomocą nmcli..."
 sudo nmcli con add type dummy con-name fake ifname fake0 ip4 1.2.3.4/24 gw4 1.2.3.1
 
-# Dodatkowe kroki konfiguracyjne (jeśli są potrzebne)
-# ...
+# Zmiana domyślnej powłoki na Fish
+echo "Zmiana domyślnej powłoki na Fish..."
+chsh -s /usr/bin/fish
+# exec fish
+
+# Uaktualnienie konfiguracji Fish Shell
+mkdir ~/.config
+mkdir ~/.config/oh-my-posh
+
+mkdir ~/.config/fish
+touch ~/.config/fish/config.fish
+#source ~/.config/fish/config.fish
+
+# Instalacja Oh My Posh
+echo "Instalacja Oh My Posh..."
+sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh
+
+# Konfiguracja motywu Oh My Posh
+echo "Konfiguracja motywu Oh My Posh..."
+# Zakładamy, że plik ein-oh-my-posh.toml znajduje się w tym samym katalogu co skrypt
+cp ubuntu/ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
+
+# Konfiguracja Fish Shell do używania Oh My Posh z lokalnym motywem
+echo 'oh-my-posh init fish --config ~/.config/oh-my-posh/theme.toml | source' >> ~/.config/fish/config.fish
+
+# Dodanie aliasu dla batcat jako bat
+echo 'alias bat="batcat"' >> ~/.config/fish/config.fish
+echo 'alias cls="clear"' >> ~/.config/fish/config.fish
+
+# Dodanie neofetch do pliku konfiguracyjnego Fish Shell, aby wyświetlał się przy każdym uruchomieniu terminala
+echo 'neofetch' >> ~/.config/fish/config.fish
+
+# . ~/.config/fish/config.fish
+
+# Instalacja pyenv
+# echo "Instalowanie pyenv..."
+# curl https://pyenv.run | bash
+
+# Konfiguracja pyenv dla Fish
+# set -U fish_user_paths $fish_user_paths $HOME/.pyenv/bin
+# echo 'set -gx PYENV_ROOT $HOME/.pyenv' >> ~/.config/fish/config.fish
+# echo 'set -gx PATH $PYENV_ROOT/bin $PATH' >> ~/.config/fish/config.fish
+# echo 'status --is-interactive; and . (pyenv init --path)' >> ~/.config/fish/config.fish
+# echo 'status --is-interactive; and . (pyenv init -)' >> ~/.config/fish/config.fish
+# echo 'status --is-interactive; and . (pyenv virtualenv-init -)' >> ~/.config/fish/config.fish
+
+# Pobranie i instalacja najnowszej wersji Pythona
+# echo "Pobieranie i instalacja najnowszej wersji Pythona..."
+# LATEST_PYTHON_VERSION=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')
+# pyenv install $LATEST_PYTHON_VERSION
+# pyenv global $LATEST_PYTHON_VERSION
+
+# Uaktualnienie konfiguracji Fish Shell
+# source ~/.config/fish/config.fish
 
 echo "Instalacja zakończona. Uruchom ponownie lub zaloguj się ponownie, aby zastosować zmiany."
+exec fish
 
 # Usuwanie wszystkich plików oraz folderu nadrzędnego "ubuntu"
-
 rm -rf ubuntu
 
 # CURRENT_DIR=$(pwd)

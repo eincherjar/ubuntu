@@ -65,11 +65,12 @@ sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
 # Pobranie nazwy użytkownika i ścieżki do katalogu domowego
 USERNAME=$(whoami)
 USER_HOME="/home/$USERNAME"
+HOSTNAME=$(hostname)
 
 # Dodanie konfiguracji do smb.conf
 sudo bash -c "cat << EOF >> /etc/samba/smb.conf
 
-[Home]
+[$HOSTNAME]
    path = $USER_HOME
    browsable = yes
    read only = no

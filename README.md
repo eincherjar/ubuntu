@@ -78,10 +78,10 @@ Skrypt dodatkowo instaluje i konfiguruje `pyenv` oraz `Oh My Posh` i ich zależn
 
 ## Użycie
 
-1. Zapisz skrypt jako `setup_script.sh`.
+1. Zapisz skrypt jako `ubuntu_setup.sh`.
 2. Nadaj skryptowi prawa wykonywania:
    ```bash
-   chmod +x setup_script.sh
+   chmod +x ubuntu_setup.sh
 3. Uruchom skrypt:
    ```bash
-   sudo ./setup_script.sh
+   sudo ./ubuntu_setup.sh

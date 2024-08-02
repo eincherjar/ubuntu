@@ -158,6 +158,7 @@ curl https://pyenv.run | bash
 # Dodanie pyenv do ścieżki PATH
 set -Ux PYENV_ROOT $HOME/.pyenv
 fish_add_path $PYENV_ROOT/bin
+eval pyenv init - | source
 
 echo '# PyEnv' >> ~/.config/fish/config.fish
 echo 'pyenv init - | source' >> ~/.config/fish/config.fish

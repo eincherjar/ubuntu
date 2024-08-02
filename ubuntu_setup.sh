@@ -61,7 +61,11 @@ chsh -s /usr/bin/fish
 # exec fish
 
 # Uaktualnienie konfiguracji Fish Shell
-source ~/.config/fish/config.fish
+mkdir ~/.config
+mkdir ~/.config/fish
+touch ~/.config/fish/config.fish
+#source ~/.config/fish/config.fish
+
 
 # Instalacja Oh My Posh
 echo "Instalacja Oh My Posh..."

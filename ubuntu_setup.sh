@@ -146,31 +146,27 @@ echo 'alias cls="clear"' >> ~/.config/fish/config.fish
 # Dodanie neofetch do pliku konfiguracyjnego Fish Shell, aby wyświetlał się przy każdym uruchomieniu terminala
 echo 'neofetch' >> ~/.config/fish/config.fish
 
-# . ~/.config/fish/config.fish
+source ~/.config/fish/config.fish
 
 # Instalacja pyenv
-# echo "Instalowanie pyenv..."
-# curl https://pyenv.run | bash
+echo "Instalowanie pyenv..."
+curl https://pyenv.run | bash
 
-# Konfiguracja pyenv dla Fish
-# set -U fish_user_paths $fish_user_paths $HOME/.pyenv/bin
-# echo 'set -gx PYENV_ROOT $HOME/.pyenv' >> ~/.config/fish/config.fish
-# echo 'set -gx PATH $PYENV_ROOT/bin $PATH' >> ~/.config/fish/config.fish
-# echo 'status --is-interactive; and . (pyenv init --path)' >> ~/.config/fish/config.fish
-# echo 'status --is-interactive; and . (pyenv init -)' >> ~/.config/fish/config.fish
-# echo 'status --is-interactive; and . (pyenv virtualenv-init -)' >> ~/.config/fish/config.fish
+# Dodanie pyenv do ścieżki PATH
+set -Ux PYENV_ROOT $HOME/.pyenv
+fish_add_path $PYENV_ROOT/bin
 
 # Pobranie i instalacja najnowszej wersji Pythona
-# echo "Pobieranie i instalacja najnowszej wersji Pythona..."
-# LATEST_PYTHON_VERSION=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')
-# pyenv install $LATEST_PYTHON_VERSION
-# pyenv global $LATEST_PYTHON_VERSION
+echo "Pobieranie i instalacja najnowszej wersji Pythona..."
+LATEST_PYTHON_VERSION=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')
+pyenv install $LATEST_PYTHON_VERSION
+pyenv global $LATEST_PYTHON_VERSION
 
 # Uaktualnienie konfiguracji Fish Shell
-# source ~/.config/fish/config.fish
+source ~/.config/fish/config.fish
 
 echo "Instalacja zakończona. Uruchom ponownie lub zaloguj się ponownie, aby zastosować zmiany."
-exec fish
+# exec fish
 
 # Usuwanie wszystkich plików oraz folderu nadrzędnego "ubuntu"
 rm -rf ubuntu

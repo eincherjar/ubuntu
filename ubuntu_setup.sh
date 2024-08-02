@@ -17,7 +17,7 @@ sudo apt install nala -y
 # Aktualizacja listy pakietów
 echo "Aktualizacja listy pakietów"
 sudo nala update
-sudo nala upgrade
+sudo nala upgrade -y
 
 # Używanie Nala do instalacji niezbędnych programów
 echo "Używanie Nala do instalacji niezbędnych programów"

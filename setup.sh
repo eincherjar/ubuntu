@@ -113,6 +113,9 @@ echo "Katalog domowy użytkownika $USERNAME jest udostępniony pod adresem: \\\\
 echo "Dodawanie interfejsu dummy za pomocą nmcli..."
 sudo nmcli con add type dummy con-name fake ifname fake0 ip4 1.2.3.4/24 gw4 1.2.3.1
 
+# Dodać pobranie motywu dracula do MC
+# https://draculatheme.com/midnight-commander
+
 # Zmiana domyślnej powłoki na Fish
 echo "Zmiana domyślnej powłoki na Fish..."
 chsh -s /usr/bin/fish

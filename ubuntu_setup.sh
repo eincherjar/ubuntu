@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Aktualizacja listy pakietów i uaktualnienie systemu
-sudo apt update
-sudo apt upgrade -y
+#sudo apt update
+#sudo apt upgrade -y
 
 # Dodanie repozytorium dla Nala
 echo "deb [trusted=yes] http://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list

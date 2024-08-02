@@ -64,6 +64,9 @@ chsh -s /usr/bin/fish
 mkdir ~/.config
 mkdir ~/.config/fish
 touch ~/.config/fish/config.fish
+
+mkdir ~/.config/oh-my-posh
+touch ~/.config/oh-my-posh/theme.toml
 #source ~/.config/fish/config.fish
 
 

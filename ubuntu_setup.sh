@@ -10,6 +10,8 @@ echo "deb [trusted=yes] http://deb.volian.org/volian/ scar main" | sudo tee /etc
 # Dodanie klucza GPG dla repozytorium
 wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar.gpg
 
+sudo apt install nala -y
+
 # Używanie Nala do instalacji niezbędnych programów
 sudo nala install -y \
   git \

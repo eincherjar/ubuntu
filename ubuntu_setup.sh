@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Aktualizacja listy pakietów i uaktualnienie systemu
-#sudo apt update
-#sudo apt upgrade -y
+# sudo apt update
+# sudo apt upgrade -y
 
 # Dodanie repozytorium dla Nala
 echo "deb [trusted=yes] http://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
@@ -10,7 +10,12 @@ echo "deb [trusted=yes] http://deb.volian.org/volian/ scar main" | sudo tee /etc
 # Dodanie klucza GPG dla repozytorium
 wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar.gpg
 
+# Instalacja Nala
 sudo apt install nala -y
+
+# Aktualizacja listy pakietów i instalacja Nala
+sudo nala update
+sudo nala install -y nala
 
 # Używanie Nala do instalacji niezbędnych programów
 sudo nala install -y \
@@ -44,12 +49,8 @@ sudo nala install -y \
   mc \
   qemu-guest-agent
 
-# Aktualizacja listy pakietów i instalacja Nala
-sudo nala update
-sudo nala install -y nala
-
 # Proxmox 
-sudo systemctl enable qemu-guest-agent
+# sudo systemctl enable qemu-guest-agent
 
 # Zmiana domyślnej powłoki na Fish
 chsh -s /usr/bin/fish

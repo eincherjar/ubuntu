@@ -90,7 +90,9 @@ echo 'alias cls="clear"' >> ~/.config/fish/config.fish
 # Dodanie neofetch do pliku konfiguracyjnego Fish Shell, aby wyświetlał się przy każdym uruchomieniu terminala
 echo 'neofetch' >> ~/.config/fish/config.fish
 
-. ~/.config/fish/config.fish
+# . ~/.config/fish/config.fish
+
+exec fish
 
 # Instalacja pyenv
 # echo "Instalowanie pyenv..."

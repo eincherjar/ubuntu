@@ -11,13 +11,16 @@ echo "deb [trusted=yes] http://deb.volian.org/volian/ scar main" | sudo tee /etc
 wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar.gpg
 
 # Instalacja Nala
+echo "Instalacja Nala"
 sudo apt install nala -y
 
-# Aktualizacja listy pakietów i instalacja Nala
+# Aktualizacja listy pakietów
+echo "Aktualizacja listy pakietów"
 sudo nala update
-sudo nala install -y nala
+sudo nala upgrade
 
 # Używanie Nala do instalacji niezbędnych programów
+echo "Używanie Nala do instalacji niezbędnych programów"
 sudo nala install -y \
   git \
   curl \
@@ -53,16 +56,19 @@ sudo nala install -y \
 # sudo systemctl enable qemu-guest-agent
 
 # Zmiana domyślnej powłoki na Fish
+echo "Zmiana domyślnej powłoki na Fish..."
 chsh -s /usr/bin/fish
 
 # Uaktualnienie konfiguracji Fish Shell
 source ~/.config/fish/config.fish
 
 # Instalacja Oh My Posh
+echo "Instalacja Oh My Posh..."
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
 
 # Konfiguracja motywu Oh My Posh
+echo "Konfiguracja motywu Oh My Posh..."
 # Zakładamy, że plik ein-oh-my-posh.toml znajduje się w tym samym katalogu co skrypt
 mkdir -p ~/.config/oh-my-posh
 cp ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml

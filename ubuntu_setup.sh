@@ -58,7 +58,7 @@ sudo nala install -y \
 # Zmiana domyślnej powłoki na Fish
 echo "Zmiana domyślnej powłoki na Fish..."
 chsh -s /usr/bin/fish
-exec fish
+# exec fish
 
 # Uaktualnienie konfiguracji Fish Shell
 source ~/.config/fish/config.fish

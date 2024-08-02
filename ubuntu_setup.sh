@@ -82,7 +82,7 @@ mkdir -p ~/.config/oh-my-posh
 cp ubuntu/ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
 
 # Konfiguracja Fish Shell do używania Oh My Posh z lokalnym motywem
-echo 'eval (oh-my-posh init fish --config ~/.config/oh-my-posh/theme.toml)' >> ~/.config/fish/config.fish
+echo 'oh-my-posh init fish --config ~/.config/oh-my-posh/theme.toml' >> ~/.config/fish/config.fish
 
 # Dodanie aliasu dla batcat jako bat
 echo 'alias bat="batcat"' >> ~/.config/fish/config.fish

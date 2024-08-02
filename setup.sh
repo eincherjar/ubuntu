@@ -126,6 +126,7 @@ else
   echo "Folder już istnieje."
 fi
 wget -P "$mc_skin" "https://raw.githubusercontent.com/dracula/midnight-commander/master/skins/dracula256.ini"
+sed -i 's/skin=default/skin=dracula256/' ~/.config/mc/ini
 # https://draculatheme.com/midnight-commander
 
 # Zmiana domyślnej powłoki na Fish

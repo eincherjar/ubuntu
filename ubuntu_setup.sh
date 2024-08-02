@@ -168,10 +168,11 @@ pyenv global $LATEST_PYTHON_VERSION
 source ~/.config/fish/config.fish
 
 echo "Instalacja zakończona. Uruchom ponownie lub zaloguj się ponownie, aby zastosować zmiany."
-# exec fish
 
 # Usuwanie wszystkich plików oraz folderu nadrzędnego "ubuntu"
 rm -rf ubuntu
+
+exec fish
 
 # CURRENT_DIR=$(pwd)
 # PARENT_DIR=$(basename "$CURRENT_DIR")

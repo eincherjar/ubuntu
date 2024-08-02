@@ -127,9 +127,6 @@ EOF"
 # Restartowanie usługi Samba
 sudo systemctl restart smbd
 
-# Instalacja i konfiguracja UFW
-sudo nala install -y ufw
-
 # Włączenie UFW i dodanie reguł
 sudo ufw enable
 sudo ufw allow OpenSSH

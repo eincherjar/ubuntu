@@ -156,6 +156,8 @@ curl https://pyenv.run | bash
 set -Ux PYENV_ROOT $HOME/.pyenv
 fish_add_path $PYENV_ROOT/bin
 
+echo 'pyenv init - | source' >> ~/.config/fish/config.fish
+
 # Pobranie i instalacja najnowszej wersji Pythona
 echo "Pobieranie i instalacja najnowszej wersji Pythona..."
 LATEST_PYTHON_VERSION=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')

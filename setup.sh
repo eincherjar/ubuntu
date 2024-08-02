@@ -149,7 +149,7 @@ echo '# Aliasy' >> ~/.config/fish/config.fish
 echo 'alias bat="batcat"' >> ~/.config/fish/config.fish
 echo 'alias cls="clear"' >> ~/.config/fish/config.fish
 
-source ~/.config/fish/config.fish
+# source ~/.config/fish/config.fish
 
 # Instalacja pyenv
 echo "Instalowanie pyenv..."

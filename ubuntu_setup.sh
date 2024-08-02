@@ -85,6 +85,7 @@ echo 'oh-my-posh init fish --config ~/.config/oh-my-posh/theme.toml | source' >>
 
 # Dodanie aliasu dla batcat jako bat
 echo 'alias bat="batcat"' >> ~/.config/fish/config.fish
+echo 'alias cls="clear"' >> ~/.config/fish/config.fish
 
 # Dodanie neofetch do pliku konfiguracyjnego Fish Shell, aby wyświetlał się przy każdym uruchomieniu terminala
 echo 'neofetch' >> ~/.config/fish/config.fish

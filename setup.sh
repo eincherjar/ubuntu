@@ -117,8 +117,16 @@ echo "Dodawanie interfejsu dummy za pomocą nmcli..."
 sudo nmcli con add type dummy con-name fake ifname fake0 ip4 1.2.3.4/24 gw4 1.2.3.1
 
 # Dodać pobranie motywu dracula do MC
+mc_skin = "~/.local/share/mc/skins"
+# Sprawdzenie, czy folder istnieje
+if [ ! -d "$mc_skin" ]; then
+  echo "Folder nie istnieje. Tworzę nowy folder."
+  mkdir "$mc_skin"
+else
+  echo "Folder już istnieje."
+fi
+wget -P "$mc_skin" "https://raw.githubusercontent.com/dracula/midnight-commander/master/skins/dracula256.ini"
 # https://draculatheme.com/midnight-commander
-# wget https://raw.githubusercontent.com/dracula/midnight-commander/master/skins/dracula256.ini
 
 # Zmiana domyślnej powłoki na Fish
 echo "Zmiana domyślnej powłoki na Fish..."

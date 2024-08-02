@@ -137,14 +137,17 @@ echo "Konfiguracja motywu Oh My Posh..."
 cp ubuntu/ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
 
 # Konfiguracja Fish Shell do używania Oh My Posh z lokalnym motywem
+echo '# Motyw do Oh-My-Posh' >> ~/.config/fish/config.fish
 echo 'oh-my-posh init fish --config ~/.config/oh-my-posh/theme.toml | source' >> ~/.config/fish/config.fish
 
+# Dodanie neofetch do pliku konfiguracyjnego Fish Shell, aby wyświetlał się przy każdym uruchomieniu terminala
+echo '# NEOFETCH' >> ~/.config/fish/config.fish
+echo 'neofetch' >> ~/.config/fish/config.fish
+
 # Dodanie aliasu dla batcat jako bat
+echo '# Aliasy' >> ~/.config/fish/config.fish
 echo 'alias bat="batcat"' >> ~/.config/fish/config.fish
 echo 'alias cls="clear"' >> ~/.config/fish/config.fish
-
-# Dodanie neofetch do pliku konfiguracyjnego Fish Shell, aby wyświetlał się przy każdym uruchomieniu terminala
-echo 'neofetch' >> ~/.config/fish/config.fish
 
 source ~/.config/fish/config.fish
 
@@ -156,6 +159,7 @@ curl https://pyenv.run | bash
 set -Ux PYENV_ROOT $HOME/.pyenv
 fish_add_path $PYENV_ROOT/bin
 
+echo '# PyEnv' >> ~/.config/fish/config.fish
 echo 'pyenv init - | source' >> ~/.config/fish/config.fish
 
 # Pobranie i instalacja najnowszej wersji Pythona

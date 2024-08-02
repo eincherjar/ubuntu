@@ -76,7 +76,7 @@ sudo chmod +x /usr/local/bin/oh-my-posh
 echo "Konfiguracja motywu Oh My Posh..."
 # Zakładamy, że plik ein-oh-my-posh.toml znajduje się w tym samym katalogu co skrypt
 mkdir -p ~/.config/oh-my-posh
-cp ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
+cp ubuntu/ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
 
 # Konfiguracja Fish Shell do używania Oh My Posh z lokalnym motywem
 echo 'eval (oh-my-posh init fish --config ~/.config/oh-my-posh/theme.toml)' >> ~/.config/fish/config.fish

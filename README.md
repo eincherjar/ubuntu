@@ -77,11 +77,6 @@ Skrypt dodatkowo instaluje i konfiguruje `pyenv` oraz `Oh My Posh` i ich zależn
     - Dodanie interfejsu sieciowego typu dummy z przykładową konfiguracją IP.
 
 ## Użycie
-
-1. Zapisz skrypt jako `ubuntu_setup.sh`.
-2. Nadaj skryptowi prawa wykonywania:
+Uruchom skrypt:
    ```bash
-   chmod +x ubuntu/setup.sh
-3. Uruchom skrypt:
-   ```bash
-   ./ubuntu/setup.sh
+   chmod +x ubuntu/setup.sh && ./ubuntu/setup.sh

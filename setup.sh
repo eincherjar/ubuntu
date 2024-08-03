@@ -98,7 +98,7 @@ sudo ufw status verbose
 
 # Pobranie hasła do PostgreSQL od użytkownika
 echo -e "${GREEN} \n## Podaj hasło dla użytkownika postgres w PostgreSQL: ${RESET}"
-echo -n "\n## Podaj hasło dla użytkownika postgres w PostgreSQL:"
+# echo -n "\n## Podaj hasło dla użytkownika postgres w PostgreSQL:"
 read -s POSTGRES_PASSWORD
 echo
 

@@ -210,9 +210,4 @@ rm -rf ubuntu
 # Tworzenie folderów Dokumenty i Projekty
 mkdir -p ~/Dokumenty
 mkdir -p ~/Projekty
-
 EOF
-
-echo "Skrypt zakończył działanie w powłoce Bash."
-
-exec fish

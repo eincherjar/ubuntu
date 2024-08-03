@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Kolory
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+RESET='\033[0m'  # Reset koloru do domyślnego
+
 # Aktualizacja listy pakietów i uaktualnienie systemu
 # sudo apt update
 # sudo apt upgrade -y
@@ -11,16 +17,16 @@ echo "deb [trusted=yes] http://deb.volian.org/volian/ scar main" | sudo tee /etc
 wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar.gpg
 
 # Instalacja Nala
-echo "Instalacja Nala"
+echo -e "${GREEN} \n## Instalacja Nala ##\n ${RESET}"
 sudo apt install nala -y
 
 # Aktualizacja listy pakietów
-echo "Aktualizacja listy pakietów"
+echo -e "${GREEN} \n## Aktualizacja listy pakietów ##\n ${RESET}"
 sudo nala update
 sudo nala upgrade -y
 
 # Używanie Nala do instalacji niezbędnych programów
-echo "Używanie Nala do instalacji niezbędnych programów"
+echo -e "${GREEN} \n## Używanie Nala do instalacji niezbędnych programów ##\n ${RESET}"
 sudo nala install -y \
   git \
   curl \
@@ -95,24 +101,24 @@ read -s POSTGRES_PASSWORD
 echo
 
 # Konfiguracja PostgreSQL
-echo "\n## Konfigurowanie PostgreSQL ##\n"
+echo -e "${GREEN} \n## Konfigurowanie PostgreSQL ##\n ${RESET}"
 sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '${POSTGRES_PASSWORD}';"
 
 # Wyświetlenie adresu do Cockpit
 IP_ADDRESS=$(hostname -I | awk '{print $1}')
-echo "\n## Cockpit został zainstalowany i uruchomiony. ##\n"
-echo "Aby uzyskać dostęp do interfejsu, przejdź do:"
-echo "http://$IP_ADDRESS:9090"
+echo -e "${GREEN} \n## Cockpit został zainstalowany i uruchomiony. ##\n ${RESET}"
+echo -e "${GREEN} Aby uzyskać dostęp do interfejsu, przejdź do: ${RESET}"
+echo -e "${GREEN} http://$IP_ADDRESS:9090 ${RESET}"
 
 # Wyświetlenie informacji o współdzielonym katalogu domowym użytkownika
-echo "\n## Samba została zainstalowana i skonfigurowana. ##\n"
-echo "Katalog domowy użytkownika $USERNAME jest udostępniony pod adresem: \\\\$IP_ADDRESS\\Home"
+echo -e "${GREEN} \n## Samba została zainstalowana i skonfigurowana. ##\n ${RESET}"
+echo -e "${GREEN} Katalog domowy użytkownika $USERNAME jest udostępniony pod adresem: \\\\$IP_ADDRESS\\$HOSTNAME ${RESET}"
 
 # Proxmox 
 # sudo systemctl enable qemu-guest-agent
 
 # Konfiguracja interfejsu sieciowego typu dummy za pomocą nmcli
-echo "\n## Dodawanie interfejsu dummy za pomocą nmcli ##\n"
+echo -e "${GREEN} \n## Dodawanie interfejsu dummy za pomocą nmcli ##\n ${RESET}"
 sudo nmcli con add type dummy con-name fake ifname fake0 ip4 1.2.3.4/24 gw4 1.2.3.1
 
 # Motyw Dracula do MC
@@ -132,21 +138,19 @@ wget -P "$mc_skin" "https://raw.githubusercontent.com/dracula/midnight-commander
 
 # Uruchomienie mc, aby wygenerować domyślny plik konfiguracyjny
 if [ ! -f "$mc_ini" ]; then
-  echo "Uruchamianie MC w celu wygenerowania pliku konfiguracyjnego."
-  # Uruchomienie mc w tle
   mc
 fi
 
 # Zmiana skórki na Dracula
 if [ -f "$mc_ini" ]; then
-  echo "Zmiana skórki na Dracula w pliku konfiguracyjnym MC."
+  echo -e "${GREEN} \n## Zmiana skórki na Dracula w pliku konfiguracyjnym MC. ##\n ${RESET}"
   sed -i 's/^skin=.*/skin=dracula256/' "$mc_ini"
 else
   echo "Błąd: Plik konfiguracyjny MC nie został znaleziony."
 fi
 
 # Zmiana domyślnej powłoki na Fish
-echo "\n## Zmiana domyślnej powłoki na Fish ##\n"
+echo -e "${GREEN} \n## Zmiana domyślnej powłoki na Fish ##\n ${RESET}"
 chsh -s /usr/bin/fish
 
 # Kontynuacja skryptu w nowej powłoce Fish
@@ -157,13 +161,12 @@ mkdir -p ~/.config/oh-my-posh
 mkdir -p ~/.config/fish
 
 # Instalacja Oh My Posh
-echo "\n## Instalacja Oh My Posh ##\n"
+echo -e "${GREEN} \n## Instalacja Oh My Posh ##\n ${RESET}"
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
 
 # Konfiguracja motywu Oh My Posh
-echo "\n## Konfiguracja motywu Oh My Posh ##\n"
-# Zakładamy, że plik ein-oh-my-posh.toml znajduje się w tym samym katalogu co skrypt
+echo -e "${GREEN} \n## Konfiguracja motywu Oh My Posh ##\n ${RESET}"
 cp ubuntu/ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
 
 # Konfiguracja Fish Shell do używania Oh My Posh z lokalnym motywem
@@ -180,7 +183,7 @@ echo 'alias bat="batcat"' >> ~/.config/fish/config.fish
 echo 'alias cls="clear"' >> ~/.config/fish/config.fish
 
 # Instalacja pyenv
-echo "\n## Instalowanie pyenv ##\n"
+echo -e "${GREEN} \n## Instalowanie pyenv ##\n ${RESET}"
 curl https://pyenv.run | bash
 
 # Dodanie pyenv do ścieżki PATH
@@ -192,7 +195,7 @@ echo '# PyEnv' >> ~/.config/fish/config.fish
 echo 'pyenv init - | source' >> ~/.config/fish/config.fish
 
 # Pobranie i instalacja najnowszej wersji Pythona
-echo "\n## Pobieranie i instalacja najnowszej wersji Pythona ##\n"
+echo -e "${GREEN} \n## Pobieranie i instalacja najnowszej wersji Pythona ##\n ${RESET}"
 set LATEST_PYTHON_VERSION (pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+\$" | tail -1 | tr -d ' ')
 pyenv install $LATEST_PYTHON_VERSION
 pyenv global $LATEST_PYTHON_VERSION
@@ -200,17 +203,18 @@ pyenv global $LATEST_PYTHON_VERSION
 # Uaktualnienie konfiguracji Fish Shell
 source ~/.config/fish/config.fish
 
-echo "## Wyłączenie powitania w fish ##"
+# Wyłączenie powitania w fish
+echo -e "${GREEN} \n## Wyłączenie powitania w fish ##\n ${RESET}"
 set -U fish_greeting
 
 # Usuwanie wszystkich plików oraz folderu nadrzędnego "ubuntu"
-echo "\n## Usuwanie wszystkich plików oraz folder 'ubuntu' ##\n"
+echo -e "${GREEN} \n## Usuwanie wszystkich plików oraz folder 'ubuntu' ##\n ${RESET}"
 rm -rf ubuntu
 
 # Tworzenie folderów Dokumenty i Projekty
-echo "\n## Tworzenie folderów Dokumenty i Projekty ##\n"
+echo -e "${GREEN} \n## Tworzenie folderów Dokumenty i Projekty ##\n ${RESET}"
 mkdir -p ~/Dokumenty
 mkdir -p ~/Projekty
 EOF
 
-echo "\n## Zrestartuj powłokę ##\n"
+echo -e "${RED} \n## Zrestartuj powłokę ##\n ${RESET}"

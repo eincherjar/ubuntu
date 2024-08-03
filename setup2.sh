@@ -188,7 +188,7 @@ set -Ux PYENV_ROOT $HOME/.pyenv
 fish_add_path $PYENV_ROOT/bin
 eval (pyenv init - | source)
 
-# echo '# PyEnv' >> ~/.config/fish/config.fish
+echo '# PyEnv' >> ~/.config/fish/config.fish
 echo 'pyenv init - | source' >> ~/.config/fish/config.fish
 
 # Pobranie i instalacja najnowszej wersji Pythona
@@ -200,7 +200,8 @@ pyenv global $LATEST_PYTHON_VERSION
 # Uaktualnienie konfiguracji Fish Shell
 source ~/.config/fish/config.fish
 
-echo "Instalacja zakończona. Uruchom ponownie lub zaloguj się ponownie, aby zastosować zmiany."
+echo "Wyłączenie powitania w fish"
+set -U fish_greeting
 
 # Usuwanie wszystkich plików oraz folderu nadrzędnego "ubuntu"
 rm -rf ubuntu

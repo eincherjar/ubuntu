@@ -135,7 +135,7 @@ wget -P "$mc_skin" "https://raw.githubusercontent.com/dracula/midnight-commander
 if [ ! -f "$mc_ini" ]; then
   echo "Uruchamianie MC w celu wygenerowania pliku konfiguracyjnego."
   # Uruchomienie mc w tle
-  mc &
+  mc
 fi
 
 # Zmiana skórki na Dracula

@@ -212,3 +212,5 @@ mkdir -p ~/Projekty
 EOF
 
 echo "Skrypt zakończył działanie w powłoce Bash."
+
+exec fish

@@ -82,7 +82,7 @@ EOF"
 
 # Restartowanie usługi Samba
 sudo systemctl restart smbd
-echo -e "${GREEN} \n## Podaj hasło dla użytkownika SAMBA ##\n ${RESET}"
+echo -e "${GREEN} \n## Podaj hasło dla użytkownika SAMBA: ${RESET}"
 sudo smbpasswd -a $USERNAME
 
 # Włączenie UFW i dodanie reguł
@@ -97,8 +97,8 @@ sudo ufw reload
 sudo ufw status verbose
 
 # Pobranie hasła do PostgreSQL od użytkownika
-
-echo -n "${GREEN} \n## Podaj hasło dla użytkownika postgres w PostgreSQL: ${RESET}"
+echo -e "${GREEN} \n## Podaj hasło dla użytkownika postgres w PostgreSQL: ${RESET}"
+echo -n "\n## Podaj hasło dla użytkownika postgres w PostgreSQL:"
 read -s POSTGRES_PASSWORD
 echo
 
@@ -217,6 +217,6 @@ rm -rf ubuntu
 echo -e "$GREEN \n## Tworzenie folderów Dokumenty i Projekty ##\n $RESET"
 mkdir -p ~/Dokumenty
 mkdir -p ~/Projekty
-EOF
 
-echo -e "${RED} \n## Zrestartuj powłokę ##\n ${RESET}"
+exec fish
+EOF

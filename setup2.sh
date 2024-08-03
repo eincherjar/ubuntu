@@ -118,15 +118,32 @@ sudo nmcli con add type dummy con-name fake ifname fake0 ip4 1.2.3.4/24 gw4 1.2.
 
 # Motyw Dracula do MC
 mc_skin="$HOME/.local/share/mc/skins"
-# Sprawdzenie, czy folder istnieje
+mc_ini="$HOME/.config/mc/ini"
+
+# Sprawdzenie, czy folder na skórki istnieje
 if [ ! -d "$mc_skin" ]; then
-  echo "Folder nie istnieje. Tworzę nowy folder."
+  echo "Folder na skórki nie istnieje. Tworzę nowy folder."
   mkdir -p "$mc_skin"
 else
-  echo "Folder już istnieje."
+  echo "Folder na skórki już istnieje."
 fi
+
+# Pobranie skórki Dracula
 wget -P "$mc_skin" "https://raw.githubusercontent.com/dracula/midnight-commander/master/skins/dracula256.ini"
-sed -i 's/skin=default/skin=dracula256/' ~/.config/mc/ini
+
+# Uruchomienie mc, aby wygenerować domyślny plik konfiguracyjny
+if [ ! -f "$mc_ini" ]; then
+  echo "Uruchamianie MC w trybie nieinteraktywnym w celu wygenerowania pliku konfiguracyjnego."
+  mc -e quit  # uruchomienie i natychmiastowe zamknięcie MC
+fi
+
+# Zmiana skórki na Dracula
+if [ -f "$mc_ini" ]; then
+  echo "Zmiana skórki na Dracula w pliku konfiguracyjnym MC."
+  sed -i 's/^skin=.*/skin=dracula256/' "$mc_ini"
+else
+  echo "Błąd: Plik konfiguracyjny MC nie został znaleziony."
+fi
 
 # Zmiana domyślnej powłoki na Fish
 echo "Zmiana domyślnej powłoki na Fish..."

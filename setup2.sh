@@ -133,7 +133,7 @@ echo "Zmiana domyślnej powłoki na Fish..."
 chsh -s /usr/bin/fish
 
 # Kontynuacja skryptu w nowej powłoce Fish
-exec fish << "EOF"
+exec fish << 'EOF'
 
 # Uaktualnienie konfiguracji Fish Shell
 mkdir -p ~/.config/oh-my-posh

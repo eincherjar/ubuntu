@@ -52,9 +52,6 @@ sudo nala install -y \
   mc \
   qemu-guest-agent
 
-# Proxmox 
-# sudo systemctl enable qemu-guest-agent
-
 # Uruchomienie i włączenie Cockpit
 sudo systemctl enable --now cockpit.socket
 
@@ -79,6 +76,7 @@ EOF"
 
 # Restartowanie usługi Samba
 sudo systemctl restart smbd
+sudo smbpasswd -a $USERNAME
 
 # Włączenie UFW i dodanie reguł
 sudo ufw enable
@@ -87,8 +85,6 @@ sudo ufw allow 9090/tcp  # Port dla Cockpit
 sudo ufw allow Samba      # Porty dla Samba (często 137, 138, 139, 445)
 sudo ufw allow 5432/tcp   # Port dla PostgreSQL
 sudo ufw reload
-
-sudo smbpasswd -a $USERNAME
 
 # Wyświetlenie statusu UFW
 sudo ufw status verbose
@@ -99,21 +95,24 @@ read -s POSTGRES_PASSWORD
 echo
 
 # Konfiguracja PostgreSQL
-echo "Konfigurowanie PostgreSQL..."
+echo "\n## Konfigurowanie PostgreSQL ##\n"
 sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '${POSTGRES_PASSWORD}';"
 
 # Wyświetlenie adresu do Cockpit
 IP_ADDRESS=$(hostname -I | awk '{print $1}')
-echo "Cockpit został zainstalowany i uruchomiony."
+echo "\n## Cockpit został zainstalowany i uruchomiony. ##\n"
 echo "Aby uzyskać dostęp do interfejsu, przejdź do:"
 echo "http://$IP_ADDRESS:9090"
 
 # Wyświetlenie informacji o współdzielonym katalogu domowym użytkownika
-echo "Samba została zainstalowana i skonfigurowana."
+echo "\n## Samba została zainstalowana i skonfigurowana. ##\n"
 echo "Katalog domowy użytkownika $USERNAME jest udostępniony pod adresem: \\\\$IP_ADDRESS\\Home"
 
+# Proxmox 
+# sudo systemctl enable qemu-guest-agent
+
 # Konfiguracja interfejsu sieciowego typu dummy za pomocą nmcli
-echo "Dodawanie interfejsu dummy za pomocą nmcli..."
+echo "\n## Dodawanie interfejsu dummy za pomocą nmcli ##\n"
 sudo nmcli con add type dummy con-name fake ifname fake0 ip4 1.2.3.4/24 gw4 1.2.3.1
 
 # Motyw Dracula do MC
@@ -147,7 +146,7 @@ else
 fi
 
 # Zmiana domyślnej powłoki na Fish
-echo "Zmiana domyślnej powłoki na Fish..."
+echo "\n## Zmiana domyślnej powłoki na Fish ##\n"
 chsh -s /usr/bin/fish
 
 # Kontynuacja skryptu w nowej powłoce Fish
@@ -158,12 +157,12 @@ mkdir -p ~/.config/oh-my-posh
 mkdir -p ~/.config/fish
 
 # Instalacja Oh My Posh
-echo "Instalacja Oh My Posh..."
+echo "\n## Instalacja Oh My Posh ##\n"
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
 
 # Konfiguracja motywu Oh My Posh
-echo "Konfiguracja motywu Oh My Posh..."
+echo "\n## Konfiguracja motywu Oh My Posh ##\n"
 # Zakładamy, że plik ein-oh-my-posh.toml znajduje się w tym samym katalogu co skrypt
 cp ubuntu/ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
 
@@ -181,7 +180,7 @@ echo 'alias bat="batcat"' >> ~/.config/fish/config.fish
 echo 'alias cls="clear"' >> ~/.config/fish/config.fish
 
 # Instalacja pyenv
-echo "Instalowanie pyenv..."
+echo "\n## Instalowanie pyenv ##\n"
 curl https://pyenv.run | bash
 
 # Dodanie pyenv do ścieżki PATH
@@ -193,7 +192,7 @@ echo '# PyEnv' >> ~/.config/fish/config.fish
 echo 'pyenv init - | source' >> ~/.config/fish/config.fish
 
 # Pobranie i instalacja najnowszej wersji Pythona
-echo "Pobieranie i instalacja najnowszej wersji Pythona..."
+echo "\n## Pobieranie i instalacja najnowszej wersji Pythona ##\n"
 set LATEST_PYTHON_VERSION (pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+\$" | tail -1 | tr -d ' ')
 pyenv install $LATEST_PYTHON_VERSION
 pyenv global $LATEST_PYTHON_VERSION
@@ -201,13 +200,17 @@ pyenv global $LATEST_PYTHON_VERSION
 # Uaktualnienie konfiguracji Fish Shell
 source ~/.config/fish/config.fish
 
-echo "Wyłączenie powitania w fish"
+echo "## Wyłączenie powitania w fish ##"
 set -U fish_greeting
 
 # Usuwanie wszystkich plików oraz folderu nadrzędnego "ubuntu"
+echo "\n## Usuwanie wszystkich plików oraz folder 'ubuntu' ##\n"
 rm -rf ubuntu
 
 # Tworzenie folderów Dokumenty i Projekty
+echo "\n## Tworzenie folderów Dokumenty i Projekty ##\n"
 mkdir -p ~/Dokumenty
 mkdir -p ~/Projekty
 EOF
+
+echo "\n## Zrestartuj powłokę ##\n"

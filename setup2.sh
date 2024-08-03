@@ -172,13 +172,13 @@ fish_add_path $PYENV_ROOT/bin
 eval (pyenv init - | source)
 
 # echo '# PyEnv' >> ~/.config/fish/config.fish
-# echo 'pyenv init - | source' >> ~/.config/fish/config.fish
+echo 'pyenv init - | source' >> ~/.config/fish/config.fish
 
-# # Pobranie i instalacja najnowszej wersji Pythona
-# echo "Pobieranie i instalacja najnowszej wersji Pythona..."
-# LATEST_PYTHON_VERSION=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')
-# pyenv install $LATEST_PYTHON_VERSION
-# pyenv global $LATEST_PYTHON_VERSION
+# Pobranie i instalacja najnowszej wersji Pythona
+echo "Pobieranie i instalacja najnowszej wersji Pythona..."
+LATEST_PYTHON_VERSION=$(pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+$" | tail -1 | tr -d ' ')
+pyenv install $LATEST_PYTHON_VERSION
+pyenv global $LATEST_PYTHON_VERSION
 
 # Uaktualnienie konfiguracji Fish Shell
 source ~/.config/fish/config.fish

@@ -218,5 +218,4 @@ echo -e "$GREEN \n## Tworzenie folderów Dokumenty i Projekty ##\n $RESET"
 mkdir -p ~/Dokumenty
 mkdir -p ~/Projekty
 
-exec fish
 EOF

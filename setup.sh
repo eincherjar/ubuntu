@@ -73,6 +73,8 @@ mega-login ${MEGACMD_EMAIL} "${MEGACMD_PASSWORD}"
 
 rm megacmd-xUbuntu_24.04_amd64.deb
 echo -e "${GREEN} \n## Mega-CMD zostało zainstlowane ${RESET}"
+nohup mega-cmd
+echo -e "${GREEN} \n## Mega-CMD zostało urucomione w tle ${RESET}"
 
 # Konfiguracja Samba do udostępnienia katalogu domowego użytkownika
 # Tworzenie kopii zapasowej oryginalnego pliku konfiguracyjnego

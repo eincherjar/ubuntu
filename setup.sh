@@ -61,6 +61,19 @@ sudo nala install -y \
 # Uruchomienie i włączenie Cockpit
 sudo systemctl enable --now cockpit.socket
 
+# Instalacja mega-cmd
+wget https://mega.nz/linux/repo/xUbuntu_24.04/amd64/megacmd-xUbuntu_24.04_amd64.deb && sudo nala install "$PWD/megacmd-xUbuntu_24.04_amd64.deb"
+
+echo -e "${GREEN} \n## Podaj email MEGA-CMD: ${RESET}"
+read -s MEGACMD_EMAIL
+echo -e "${GREEN} \n## Podaj hasło MEGA-CMD: ${RESET}"
+read -s MEGACMD_PASSWORD
+echo
+mega-login ${MEGACMD_EMAIL} "${MEGACMD_PASSWORD}"
+
+rm megacmd-xUbuntu_24.04_amd64.deb
+echo -e "${GREEN} \n## Mega-CMD zostało zainstlowane ${RESET}"
+
 # Konfiguracja Samba do udostępnienia katalogu domowego użytkownika
 # Tworzenie kopii zapasowej oryginalnego pliku konfiguracyjnego
 sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak

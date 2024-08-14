@@ -83,7 +83,7 @@ type = "prompt"
 [[blocks.segments]]
 type = "time"
 style = "plain"
-template = "[{{ .CurrentDate | date .Format }}]"
+template = "[{{ .CurrentDate | date .Format }}] "
 foreground = "#81ff91"
 
 [[blocks]]

@@ -61,20 +61,29 @@ sudo nala install -y \
 # Uruchomienie i włączenie Cockpit
 sudo systemctl enable --now cockpit.socket
 
-# Instalacja mega-cmd
-wget https://mega.nz/linux/repo/xUbuntu_24.04/amd64/megacmd-xUbuntu_24.04_amd64.deb && sudo nala install "$PWD/megacmd-xUbuntu_24.04_amd64.deb"
+# Zapytanie użytkownika o instalację Mega-CMD
+echo -e "${YELLOW} \nCzy chcesz zainstalować i skonfigurować Mega-CMD? (tak/nie) ${RESET}"
+read -r INSTALL_MEGA_CMD
 
-echo -e "${GREEN} \n## Podaj email MEGA-CMD: ${RESET}"
-read -s MEGACMD_EMAIL
-echo -e "${GREEN} \n## Podaj hasło MEGA-CMD: ${RESET}"
-read -s MEGACMD_PASSWORD
-echo
-mega-login ${MEGACMD_EMAIL} "${MEGACMD_PASSWORD}"
+if [[ "$INSTALL_MEGA_CMD" =~ ^[tT][aA][kK]$ ]]; then
+  echo -e "${GREEN} \n## Instalacja Mega-CMD ##\n ${RESET}"
+  wget https://mega.nz/linux/repo/xUbuntu_24.04/amd64/megacmd-xUbuntu_24.04_amd64.deb
+  sudo nala install "$PWD/megacmd-xUbuntu_24.04_amd64.deb"
 
-rm megacmd-xUbuntu_24.04_amd64.deb
-echo -e "${GREEN} \n## Mega-CMD zostało zainstlowane ${RESET}"
-nohup mega-cmd
-echo -e "${GREEN} \n## Mega-CMD zostało urucomione w tle ${RESET}"
+  echo -e "${GREEN} \n## Podaj email MEGA-CMD: ${RESET}"
+  read -s MEGACMD_EMAIL
+  echo -e "${GREEN} \n## Podaj hasło MEGA-CMD: ${RESET}"
+  read -s MEGACMD_PASSWORD
+  echo
+  mega-login ${MEGACMD_EMAIL} "${MEGACMD_PASSWORD}"
+
+  rm megacmd-xUbuntu_24.04_amd64.deb
+  echo -e "${GREEN} \n## Mega-CMD zostało zainstalowane ${RESET}"
+  nohup mega-cmd &
+  echo -e "${GREEN} \n## Mega-CMD zostało uruchomione w tle ${RESET}"
+else
+  echo -e "${YELLOW} \nPominięto instalację Mega-CMD. ${RESET}"
+fi
 
 # Konfiguracja Samba do udostępnienia katalogu domowego użytkownika
 # Tworzenie kopii zapasowej oryginalnego pliku konfiguracyjnego
@@ -113,7 +122,6 @@ sudo ufw status verbose
 
 # Pobranie hasła do PostgreSQL od użytkownika
 echo -e "${GREEN} \n## Podaj hasło dla użytkownika postgres w PostgreSQL: ${RESET}"
-# echo -n "\n## Podaj hasło dla użytkownika postgres w PostgreSQL:"
 read -s POSTGRES_PASSWORD
 echo
 

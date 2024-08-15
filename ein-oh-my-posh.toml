@@ -15,19 +15,24 @@ template = " ╭─<#BF616A>[</>{{ if .SSHSession }}  {{ end }}"
 type = "os"
 style = "plain"
 foreground = "p:nord-13"
-template = "<#A3BE8C>{{.Icon}}</> {{ .UserName }}@{{ .HostName }}<#BF616A>]</>"
+template = "{{ .UserName }}@{{ .HostName }}<#BF616A>]</> <#A3BE8C>{{.Icon}}</>  󰅂"
 
 [[blocks.segments]]
 type = "path"
 style = "plain"
-foreground = "p:nord-15"
+foreground = "p:nord-12"
 
 [blocks.segments.properties]
-folder_icon = ""
+folder_icon = " "
 folder_separator_icon = " 󰅂 "
-home_icon = "󰋜"
+home_icon = ""
 max_depth = 2
 style = "agnoster_short"
+
+
+[[blocks]]
+type = "prompt"
+alignment = "right"
 
 [[blocks.segments]]
 type = "status"
@@ -39,16 +44,10 @@ template = " {{ if gt .Code 0 }}✘ {{ else }}󰸞 {{ end }}{{ if eq ( gt .Code 
 [blocks.segments.properties]
 always_enabled = true
 
-[[blocks]]
-type = "prompt"
-alignment = "right"
-
 [[blocks.segments]]
 type = "executiontime"
 style = "powerline"
-powerline_symbol = ""
-foreground = "#ffffff"
-background = "#8800dd"
+foreground = "p:nord-13"
 template = " <#fefefe></> {{ .FormattedMs }} "
 
 [properties]
@@ -71,19 +70,19 @@ fetch_worktree_count = true
 [[blocks.segments]]
 type = "python"
 style = "powerline"
-foreground = "p:nord-6"
+foreground = "p:nord-13"
 fetch_virtual_env = true
 fetch_version = true
-template = "  {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} "
+template = "|  {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}"
 
 [[blocks.segments]]
 type = "time"
 style = "plain"
-foreground = "p:nord-7"
+foreground = "p:nord-13"
 template = " {{ .CurrentDate | date .Format }} "
 
 [blocks.segments.properties]
-time_format = " 15:04:05 |   2006-01-02"
+time_format = "|  15:04:05 |   2006-01-02"
 
 [[blocks]]
 type = "prompt"

@@ -1,4 +1,3 @@
-"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
 version = 2
 final_space = true
 
@@ -7,84 +6,84 @@ type = "prompt"
 alignment = "left"
 
 [[blocks.segments]]
-type = "python"
-style = "plain"
-template = "({{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }})"
-foreground = "white"
-
-[blocks.segments.properties]
-fetch_version = false
-
-[[blocks]]
-type = "prompt"
-alignment = "left"
-newline = true
-
-[[blocks.segments]]
-type = "text"
-style = "plain"
-template = "╭─"
-foreground = "#81ff91"
-
-[[blocks.segments]]
-type = 'os'
-style = 'diamond'
-foreground = '#81ff91'
-# background = "#282a36"
-template = ' {{.Icon}}{{ if .WSL }}WSL at {{ end }} '
-
-[blocks.segments.properties]
-alpine = ""
-arch = ""
-centos = ""
-debian = ""
-elementary = ""
-fedora = ""
-gentoo = ""
-linux = ""
-macos = ""
-manjaro = ""
-mint = ""
-opensuse = ""
-raspbian = ""
-ubuntu = ""
-windows = ""
-wsl = ""
-
-[[blocks.segments]]
 type = "session"
 style = "plain"
-template = "<#f9b5ac> {{ .UserName }}</> <d><#73a7a7>w</></d> "
+foreground = "p:nord-13"
+template = " ╭─<#BF616A>[</>{{ if .SSHSession }}  {{ end }}"
+
+[[blocks.segments]]
+type = "os"
+style = "plain"
+foreground = "p:nord-13"
+template = "<#A3BE8C>{{.Icon}}</> {{ .UserName }}@{{ .HostName }}<#BF616A>]</>"
 
 [[blocks.segments]]
 type = "path"
 style = "plain"
-template = " {{ .Path }} "
-foreground = "#b87ea2"
+foreground = "p:nord-15"
 
 [blocks.segments.properties]
-style = "full"
+folder_icon = ""
+folder_separator_icon = " 󰅂 "
+home_icon = "󰋜"
+max_depth = 2
+style = "agnoster_short"
+
+[[blocks.segments]]
+type = "status"
+style = "plain"
+foreground = "p:nord-14"
+foreground_templates = ["{{ if gt .Code 0 }}red{{ end }}"]
+template = " {{ if gt .Code 0 }}✘ {{ else }}󰸞 {{ end }}{{ if eq ( gt .Code 0 ) .Segments.Path.Writable}} {{ end }}"
+
+[blocks.segments.properties]
+always_enabled = true
+
+[[blocks]]
+type = "prompt"
+alignment = "right"
+
+[[blocks.segments]]
+type = "executiontime"
+style = "powerline"
+powerline_symbol = ""
+foreground = "#ffffff"
+background = "#8800dd"
+template = " <#fefefe></> {{ .FormattedMs }} "
+
+[properties]
+threshold = 500
+style = "austin"
+always_enabled = true
 
 [[blocks.segments]]
 type = "git"
-style = "diamond"
-template = "<#db6e89>::</> {{ .UpstreamIcon }}{{ .HEAD }}{{ if .Staging.Changed }}<#FF6F00>  {{ .Staging.String }}</>{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} "
-foreground = "#c9cccd"
+style = "plain"
+foreground = "p:nord-13"
+template = "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} 󰆓 {{ .StashCount }}{{ end }}"
 
 [blocks.segments.properties]
-fetch_status = true
+branch_icon = " "
 fetch_stash_count = true
-fetch_upstream_icon = true
+fetch_status = true
+fetch_worktree_count = true
 
-[[blocks]]
-alignment = "right"
-type = "prompt"
+[[blocks.segments]]
+type = "python"
+style = "powerline"
+foreground = "p:nord-6"
+fetch_virtual_env = true
+fetch_version = true
+template = "  {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} "
 
 [[blocks.segments]]
 type = "time"
 style = "plain"
-template = "[{{ .CurrentDate | date .Format }}] "
-foreground = "#81ff91"
+foreground = "p:nord-7"
+template = " {{ .CurrentDate | date .Format }} "
+
+[blocks.segments.properties]
+time_format = " 15:04:05 |   2006-01-02"
 
 [[blocks]]
 type = "prompt"
@@ -94,16 +93,23 @@ newline = true
 [[blocks.segments]]
 type = "text"
 style = "plain"
-template = "╰─"
-foreground = "#81ff91"
+foreground = "p:nord-8"
+template = " <#EBCB8B>╰─󰅂</>"
 
-[[blocks]]
-type = "prompt"
-alignment = "left"
-newline = false
-
-[[blocks.segments]]
-type = "text"
-style = "plain"
-template = "❯"
-foreground = "#81ff91"
+[palette]
+nord-0 = "#2E3440"
+nord-1 = "#3B4252"
+nord-2 = "#434C5E"
+nord-3 = "#4C566A"
+nord-4 = "#D8DEE9"
+nord-5 = "#E5E9F0"
+nord-6 = "#ECEFF4"
+nord-7 = "#8FBCBB"
+nord-8 = "#88C0D0"
+nord-9 = "#81A1C1"
+nord-10 = "#5E81AC"
+nord-11 = "#BF616A"
+nord-12 = "#D08770"
+nord-13 = "#EBCB8B"
+nord-14 = "#A3BE8C"
+nord-15 = "#B48EAD"

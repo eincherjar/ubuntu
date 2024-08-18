@@ -11,13 +11,14 @@ RESET='\033[0m'  # Reset koloru do domyślnego
 # sudo apt upgrade -y
 
 # Dodanie repozytorium dla Nala
-echo "deb [trusted=yes] http://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
+#echo "deb [trusted=yes] http://deb.volian.org/volian/ scar main" | sudo tee /etc/apt/sources.list.d/volian-archive-scar-unstable.list
 
 # Dodanie klucza GPG dla repozytorium
-wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar.gpg
+#wget -qO - https://deb.volian.org/volian/scar.key | sudo tee /etc/apt/trusted.gpg.d/volian-archive-scar.gpg
 
 # Instalacja Nala
 echo -e "${GREEN} \n## Instalacja Nala ##\n ${RESET}"
+sudo add-apt-repository ppa:nala-pm/stable
 sudo apt install nala -y
 
 # Aktualizacja listy pakietów
@@ -115,6 +116,7 @@ sudo ufw allow OpenSSH
 sudo ufw allow 9090/tcp  # Port dla Cockpit
 sudo ufw allow Samba      # Porty dla Samba (często 137, 138, 139, 445)
 sudo ufw allow 5432/tcp   # Port dla PostgreSQL
+sudo ufw allow 8000/tcp   # Port dla Django
 sudo ufw reload
 
 # Wyświetlenie statusu UFW

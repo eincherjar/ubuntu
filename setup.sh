@@ -181,17 +181,22 @@ chsh -s /usr/bin/fish
 # Kontynuacja skryptu w nowej powłoce Fish
 exec fish << 'EOF'
 
+# Kolory
+set -l GREEN (set_color green)
+set -l YELLOW (set_color yellow)
+set -l RESET (set_color normal)
+
 # Uaktualnienie konfiguracji Fish Shell
 mkdir -p ~/.config/oh-my-posh
 mkdir -p ~/.config/fish
 
 # Instalacja Oh My Posh
-echo -e "$GREEN \n## Instalacja Oh My Posh ##\n $RESET"
+printf "$GREEN \n## Instalacja Oh My Posh ##\n $RESET\n"
 sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
 sudo chmod +x /usr/local/bin/oh-my-posh
 
 # Konfiguracja motywu Oh My Posh
-echo -e "$GREEN \n## Konfiguracja motywu Oh My Posh ##\n $RESET"
+printf "$GREEN \n## Konfiguracja motywu Oh My Posh ##\n $RESET\n"
 cp ubuntu/ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
 
 # Konfiguracja Fish Shell do używania Oh My Posh z lokalnym motywem
@@ -208,7 +213,7 @@ echo 'alias bat="batcat"' >> ~/.config/fish/config.fish
 echo 'alias cls="clear"' >> ~/.config/fish/config.fish
 
 # Instalacja pyenv
-echo -e "$GREEN \n## Instalowanie pyenv ##\n $RESET"
+printf "$GREEN \n## Instalowanie pyenv ##\n $RESET\n"
 curl https://pyenv.run | bash
 
 # Dodanie pyenv do ścieżki PATH
@@ -220,7 +225,7 @@ echo '# PyEnv' >> ~/.config/fish/config.fish
 echo 'pyenv init - | source' >> ~/.config/fish/config.fish
 
 # Pobranie i instalacja najnowszej wersji Pythona
-echo -e "$GREEN \n## Pobieranie i instalacja najnowszej wersji Pythona ##\n $RESET"
+printf "$GREEN \n## Pobieranie i instalacja najnowszej wersji Pythona ##\n $RESET\n"
 set LATEST_PYTHON_VERSION (pyenv install --list | grep -E "^\s*3\.[0-9]+\.[0-9]+\$" | tail -1 | tr -d ' ')
 pyenv install $LATEST_PYTHON_VERSION
 pyenv global $LATEST_PYTHON_VERSION
@@ -229,15 +234,15 @@ pyenv global $LATEST_PYTHON_VERSION
 source ~/.config/fish/config.fish
 
 # Wyłączenie powitania w fish
-echo -e "$GREEN \n## Wyłączenie powitania w fish ##\n $RESET"
+printf "$GREEN \n## Wyłączenie powitania w fish ##\n $RESET\n"
 set -U fish_greeting
 
 # Usuwanie wszystkich plików oraz folderu nadrzędnego "ubuntu"
-echo -e "$GREEN \n## Usuwanie wszystkich plików oraz folder 'ubuntu' ##\n $RESET"
+printf "$GREEN \n## Usuwanie wszystkich plików oraz folder 'ubuntu' ##\n $RESET\n"
 rm -rf ubuntu
 
 # Tworzenie folderów Dokumenty i Projekty
-echo -e "$GREEN \n## Tworzenie folderów Dokumenty i Projekty ##\n $RESET"
+printf "$GREEN \n## Tworzenie folderów Dokumenty i Projekty ##\n $RESET\n"
 mkdir -p ~/Dokumenty
 mkdir -p ~/Projekty
 

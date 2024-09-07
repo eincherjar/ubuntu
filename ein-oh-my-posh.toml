@@ -2,113 +2,114 @@ version = 2
 final_space = true
 
 [[blocks]]
-type = "prompt"
-alignment = "left"
+    type = "prompt"
+    alignment = "left"
 
 [[blocks.segments]]
-type = "session"
-style = "plain"
-foreground = "p:nord-13"
-template = " ╭─<#BF616A>[</>{{ if .SSHSession }}  {{ end }}"
+    type = "session"
+    style = "plain"
+    foreground = "p:ein-00"
+    template = " ╭─<#BF616A>[</>{{ if .SSHSession }}  {{ end }}"
 
 [[blocks.segments]]
-type = "os"
-style = "plain"
-foreground = "p:nord-13"
-template = "{{ .UserName }}@{{ .HostName }}<#BF616A>]</> <#A3BE8C>{{.Icon}}</>  󰅂"
+    type = "os"
+    style = "plain"
+    foreground = "p:ein-00"
+    template = "{{ .UserName }}@{{ .HostName }}<#BF616A>]</> <#BF616A>{{.Icon}}</>"
 
 [[blocks.segments]]
-type = "path"
-style = "plain"
-foreground = "p:nord-12"
+    type = "path"
+    style = "plain"
+    foreground = "p:nord-12"
 
 [blocks.segments.properties]
-folder_icon = " "
-folder_separator_icon = " 󰅂 "
-home_icon = ""
-max_depth = 2
-style = "agnoster_short"
+    folder_icon = " "
+    folder_separator_icon = " 󰅂 "
+    home_icon = ""
+    max_depth = 2
+    style = "agnoster_short"
 
 
 [[blocks]]
-type = "prompt"
-alignment = "right"
+    type = "prompt"
+    alignment = "right"
 
 [[blocks.segments]]
-type = "status"
-style = "plain"
-foreground = "p:nord-14"
-foreground_templates = ["{{ if gt .Code 0 }}red{{ end }}"]
-template = " {{ if gt .Code 0 }}✘ {{ else }}󰸞 {{ end }}{{ if eq ( gt .Code 0 ) .Segments.Path.Writable}} {{ end }}"
+    type = "status"
+    style = "plain"
+    foreground = "p:nord-01"
+    foreground_templates = ["{{ if gt .Code 0 }}red{{ end }}"]
+    template = " {{ if gt .Code 0 }}✘ {{ else }}󰸞 {{ end }}{{ if eq ( gt .Code 0 ) .Segments.Path.Writable}} {{ end }}"
 
 [blocks.segments.properties]
-always_enabled = true
+    always_enabled = true
 
 [[blocks.segments]]
-type = "executiontime"
-style = "powerline"
-foreground = "p:nord-13"
-template = " <#fefefe></> {{ .FormattedMs }} "
+    type = "executiontime"
+    style = "powerline"
+    foreground = "p:ein-00"
+    template = " <#fefefe></> {{ .FormattedMs }} "
 
 [properties]
-threshold = 500
-style = "austin"
-always_enabled = true
+    threshold = 500
+    style = "austin"
+    always_enabled = true
 
 [[blocks.segments]]
-type = "git"
-style = "plain"
-foreground = "p:nord-13"
-template = "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} 󰆓 {{ .StashCount }}{{ end }}"
+    type = "git"
+    style = "plain"
+    foreground = "p:ein-00"
+    template = "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} 󰆓 {{ .StashCount }}{{ end }}"
 
 [blocks.segments.properties]
-branch_icon = " "
-fetch_stash_count = true
-fetch_status = true
-fetch_worktree_count = true
+    branch_icon = " "
+    fetch_stash_count = true
+    fetch_status = true
+    fetch_worktree_count = true
 
 [[blocks.segments]]
-type = "python"
-style = "powerline"
-foreground = "p:nord-13"
-fetch_virtual_env = true
-fetch_version = true
-template = "|  {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}"
+    type = "python"
+    style = "powerline"
+    foreground = "p:ein-00"
+    fetch_virtual_env = true
+    fetch_version = true
+    template = " <#ebebeb> </> {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}"
 
 [[blocks.segments]]
-type = "time"
-style = "plain"
-foreground = "p:nord-13"
-template = " {{ .CurrentDate | date .Format }} "
+    type = "time"
+    style = "plain"
+    foreground = "p:ein-00"
+    template = " {{ .CurrentDate | date .Format }} "
 
 [blocks.segments.properties]
-time_format = "|  15:04:05 |   2006-01-02"
+    time_format = " <#ebebeb> </> 15:04:05 <#ebebeb> </> 2006-01-02"
 
 [[blocks]]
-type = "prompt"
-alignment = "left"
-newline = true
+    type = "prompt"
+    alignment = "left"
+    newline = true
 
 [[blocks.segments]]
-type = "text"
-style = "plain"
-foreground = "p:nord-8"
-template = " <#EBCB8B>╰─󰅂</>"
+    type = "text"
+    style = "plain"
+    foreground = "p:ein-00"
+    template = " <p:ein-00>╰─󰅂</>"
 
 [palette]
-nord-0 = "#2E3440"
-nord-1 = "#3B4252"
-nord-2 = "#434C5E"
-nord-3 = "#4C566A"
-nord-4 = "#D8DEE9"
-nord-5 = "#E5E9F0"
-nord-6 = "#ECEFF4"
-nord-7 = "#8FBCBB"
-nord-8 = "#88C0D0"
-nord-9 = "#81A1C1"
-nord-10 = "#5E81AC"
-nord-11 = "#BF616A"
-nord-12 = "#D08770"
-nord-13 = "#EBCB8B"
-nord-14 = "#A3BE8C"
-nord-15 = "#B48EAD"
+    ein-00 = "#BF616A"
+    ein-01 = "#ebebeb"
+    nord-0 = "#2E3440"
+    nord-1 = "#3B4252"
+    nord-2 = "#434C5E"
+    nord-3 = "#4C566A"
+    nord-4 = "#D8DEE9"
+    nord-5 = "#E5E9F0"
+    nord-6 = "#ECEFF4"
+    nord-7 = "#8FBCBB"
+    nord-8 = "#88C0D0"
+    nord-9 = "#81A1C1"
+    nord-10 = "#5E81AC"
+    nord-11 = "#BF616A"
+    nord-12 = "#D08770"
+    nord-14 = "#A3BE8C"
+    nord-15 = "#B48EAD"

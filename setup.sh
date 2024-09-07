@@ -57,6 +57,7 @@ sudo nala install -y \
   libtk8.6 \
   libgdbm-compat-dev \
   mc \
+  eza
   qemu-guest-agent
 
 # Uruchomienie i włączenie Cockpit

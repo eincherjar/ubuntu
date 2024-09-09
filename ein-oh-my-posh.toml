@@ -9,24 +9,24 @@ final_space = true
     type = "session"
     style = "plain"
     foreground = "p:ein-00"
-    template = "╭─<#BF616A>[</>{{ if .SSHSession }} {{ end }}"
+    template = "╭─<#b8c0ff>[</>{{ if .SSHSession }}  {{ end }}"
 
 [[blocks.segments]]
     type = "os"
     style = "plain"
     foreground = "p:ein-00"
-    template = "{{ .UserName }}@{{ .HostName }}<#BF616A>]</> <#BF616A>{{.Icon}}</>"
+    template = "{{ .UserName }}@{{ .HostName }}<#b8c0ff>]</> <#b8c0ff>{{.Icon}}</>"
 
 [[blocks.segments]]
     type = "path"
     style = "plain"
-    foreground = "p:nord-12"
+    foreground = "p:ein-02"
 
 [blocks.segments.properties]
     folder_icon = " "
     folder_separator_icon = " 󰅂 "
     home_icon = ""
-    max_depth = 2
+    max_depth = 4
     style = "agnoster_short"
 
 
@@ -37,7 +37,7 @@ final_space = true
 [[blocks.segments]]
     type = "status"
     style = "plain"
-    foreground = "p:nord-01"
+    foreground = "p:ein-01"
     foreground_templates = ["{{ if gt .Code 0 }}red{{ end }}"]
     template = " {{ if gt .Code 0 }}✘ {{ else }}󰸞 {{ end }}{{ if eq ( gt .Code 0 ) .Segments.Path.Writable}} {{ end }}"
 
@@ -96,20 +96,6 @@ final_space = true
     template = "<p:ein-00>╰─󰅂</>"
 
 [palette]
-    ein-00 = "#BF616A"
-    ein-01 = "#ebebeb"
-    nord-0 = "#2E3440"
-    nord-1 = "#3B4252"
-    nord-2 = "#434C5E"
-    nord-3 = "#4C566A"
-    nord-4 = "#D8DEE9"
-    nord-5 = "#E5E9F0"
-    nord-6 = "#ECEFF4"
-    nord-7 = "#8FBCBB"
-    nord-8 = "#88C0D0"
-    nord-9 = "#81A1C1"
-    nord-10 = "#5E81AC"
-    nord-11 = "#BF616A"
-    nord-12 = "#D08770"
-    nord-14 = "#A3BE8C"
-    nord-15 = "#B48EAD"
+    ein-00 = "#b8c0ff"
+    ein-01 = "#b8c0ff"
+    ein-02 = "#e5e5e5"

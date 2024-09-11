@@ -78,22 +78,22 @@ echo 'SAVEHIST=1000' >> ~/.zshrc
 echo 'HISTFILE=~/.zsh_history' >> ~/.zshrc
 echo '' >> ~/.zshrc
 
-echo 'zstyle ':completion:*' auto-description 'specify: %d'' >> ~/.zshrc
-echo 'zstyle ':completion:*' completer _expand _complete _correct _approximate' >> ~/.zshrc
-echo 'zstyle ':completion:*' format 'Completing %d'' >> ~/.zshrc
-echo 'zstyle ':completion:*' group-name ''' >> ~/.zshrc
-echo 'zstyle ':completion:*' menu select=2' >> ~/.zshrc
+echo "zstyle ':completion:*' auto-description 'specify: %d'" >> ~/.zshrc
+echo "zstyle ':completion:*' completer _expand _complete _correct _approximate" >> ~/.zshrc
+echo "zstyle ':completion:*' format 'Completing %d'" >> ~/.zshrc
+echo "zstyle ':completion:*' group-name ''" >> ~/.zshrc
+echo "zstyle ':completion:*' menu select=2" >> ~/.zshrc
 echo 'eval "$(dircolors -b)"' >> ~/.zshrc
-echo 'zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}' >> ~/.zshrc
-echo 'zstyle ':completion:*' list-colors ''' >> ~/.zshrc
-echo 'zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s' >> ~/.zshrc
-echo 'zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'' >> ~/.zshrc
-echo 'zstyle ':completion:*' menu select=long' >> ~/.zshrc
-echo 'zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s' >> ~/.zshrc
-echo 'zstyle ':completion:*' use-compctl false' >> ~/.zshrc
-echo 'zstyle ':completion:*' verbose true' >> ~/.zshrc
-echo 'zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'' >> ~/.zshrc
-echo 'zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'' >> ~/.zshrc
+echo "zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}" >> ~/.zshrc
+echo "zstyle ':completion:*' list-colors ''" >> ~/.zshrc
+echo "zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s" >> ~/.zshrc
+echo "zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'" >> ~/.zshrc
+echo "zstyle ':completion:*' menu select=long" >> ~/.zshrc
+echo "zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s" >> ~/.zshrc
+echo "zstyle ':completion:*' use-compctl false" >> ~/.zshrc
+echo "zstyle ':completion:*' verbose true" >> ~/.zshrc
+echo "zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'" >> ~/.zshrc
+echo "zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'" >> ~/.zshrc
 echo '' >> ~/.zshrc
 
 # Dodanie neofetch do pliku konfiguracyjnego ZSH

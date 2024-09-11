@@ -20,6 +20,7 @@ sudo apt install -y \
   python3 \
   python3-pip \
   zsh \
+  samba \
   cockpit \
   bat \
   neofetch \

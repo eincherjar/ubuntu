@@ -63,16 +63,50 @@ echo 'eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/theme.toml)"' >>
 # Wyłączenie powitania w zsh
 echo -e "${LBLUE} \n## Wyłączenie powitania w zsh ##\n ${RESET}"
 echo 'unset ZSH_GREETING' >> ~/.zshrc
+echo '' >> ~/.zshrc
+
+echo '# Use modern completion system' >> ~/.zshrc
+echo 'autoload -Uz compinit' >> ~/.zshrc
+echo 'compinit' >> ~/.zshrc
+echo '' >> ~/.zshrc
+echo 'setopt histignorealldups sharehistory' >> ~/.zshrc
+echo '' >> ~/.zshrc
+
+echo '# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:' >> ~/.zshrc
+echo 'HISTSIZE=1000' >> ~/.zshrc
+echo 'SAVEHIST=1000' >> ~/.zshrc
+echo 'HISTFILE=~/.zsh_history' >> ~/.zshrc
+echo '' >> ~/.zshrc
+
+echo 'zstyle ':completion:*' auto-description 'specify: %d'' >> ~/.zshrc
+echo 'zstyle ':completion:*' completer _expand _complete _correct _approximate' >> ~/.zshrc
+echo 'zstyle ':completion:*' format 'Completing %d'' >> ~/.zshrc
+echo 'zstyle ':completion:*' group-name ''' >> ~/.zshrc
+echo 'zstyle ':completion:*' menu select=2' >> ~/.zshrc
+echo 'eval "$(dircolors -b)"' >> ~/.zshrc
+echo 'zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}' >> ~/.zshrc
+echo 'zstyle ':completion:*' list-colors ''' >> ~/.zshrc
+echo 'zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s' >> ~/.zshrc
+echo 'zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'' >> ~/.zshrc
+echo 'zstyle ':completion:*' menu select=long' >> ~/.zshrc
+echo 'zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s' >> ~/.zshrc
+echo 'zstyle ':completion:*' use-compctl false' >> ~/.zshrc
+echo 'zstyle ':completion:*' verbose true' >> ~/.zshrc
+echo 'zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'' >> ~/.zshrc
+echo 'zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'' >> ~/.zshrc
+echo '' >> ~/.zshrc
 
 # Dodanie neofetch do pliku konfiguracyjnego ZSH
 echo '# NEOFETCH' >> ~/.zshrc
 echo 'neofetch' >> ~/.zshrc
+echo '' >> ~/.zshrc
 
 # Dodanie aliasu dla batcat jako bat
 echo '# Aliasy' >> ~/.zshrc
 echo 'alias bat="batcat"' >> ~/.zshrc
 echo 'alias cls="clear"' >> ~/.zshrc
 echo 'alias ls="eza --long --icons=always --group-directories-first --all --header --group"' >> ~/.zshrc
+echo '' >> ~/.zshrc
 
 # Instalacja pyenv
 echo -e "${LBLUE} \n## Instalacja pyenv ##\n ${RESET}"
@@ -89,6 +123,7 @@ echo '# Pyenv configuration' >> ~/.zshrc
 echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc
 echo 'eval "$(pyenv init --path)"' >> ~/.zshrc
 echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+echo '' >> ~/.zshrc
 
 # Instalacja wtyczek ZSH
 echo -e "${LBLUE} \n## Instalacja wtyczek Zsh ##\n ${RESET}"
@@ -107,7 +142,7 @@ git clone https://github.com/zsh-users/zsh-history-substring-search $ZSH_PLUGIN_
 git clone https://github.com/MichaelAquilina/zsh-you-should-use $ZSH_PLUGIN_DIR/zsh-you-should-use
 
 # Ścieżka do wtyczek
-echo "export ZSH_PLUGIN_DIR=~/.config/zsh/plugins"
+echo "export ZSH_PLUGIN_DIR=~/.config/zsh/plugins" >> ~/.zshrc
 
 # Dodanie wszystkich wtyczek do pliku .zshrc
 echo "source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc

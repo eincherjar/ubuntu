@@ -46,7 +46,83 @@ sudo apt install -y \
 # Uruchomienie i włączenie Cockpit
 sudo systemctl enable --now cockpit.socket
 
-# Zapytanie użytkownika o instalację Mega-CMD
+# Instalacja Oh My Posh dla ZSH
+echo -e "${LBLUE} \n## Instalacja Oh My Posh ##\n ${RESET}"
+mkdir -p ~/.config/oh-my-posh
+sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+sudo chmod +x /usr/local/bin/oh-my-posh
+
+# Konfiguracja motywu Oh My Posh
+echo -e "${LBLUE} \n## Konfiguracja motywu Oh My Posh ##\n ${RESET}"
+cp ubuntu/ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
+
+# Konfiguracja ZSH do używania Oh My Posh z lokalnym motywem
+echo '# Motyw do Oh-My-Posh' >> ~/.zshrc
+echo 'eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/theme.toml)"' >> ~/.zshrc
+
+# Wyłączenie powitania w zsh
+echo -e "${LBLUE} \n## Wyłączenie powitania w zsh ##\n ${RESET}"
+echo 'unset ZSH_GREETING' >> ~/.zshrc
+
+# Dodanie neofetch do pliku konfiguracyjnego ZSH
+echo '# NEOFETCH' >> ~/.zshrc
+echo 'neofetch' >> ~/.zshrc
+
+# Dodanie aliasu dla batcat jako bat
+echo '# Aliasy' >> ~/.zshrc
+echo 'alias bat="batcat"' >> ~/.zshrc
+echo 'alias cls="clear"' >> ~/.zshrc
+echo 'alias ls="eza --long --icons=always --group-directories-first --all --header --group"' >> ~/.zshrc
+
+# Instalacja pyenv
+echo -e "${LBLUE} \n## Instalacja pyenv ##\n ${RESET}"
+curl https://pyenv.run | bash
+
+# Konfiguracja pyenv dla bash i zsh
+echo -e "${LBLUE} \n## Konfiguracja pyenv ##\n ${RESET}"
+echo '# Pyenv configuration' >> ~/.bashrc
+echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init --path)"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+
+echo '# Pyenv configuration' >> ~/.zshrc
+echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init --path)"' >> ~/.zshrc
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+
+# Instalacja wtyczek ZSH
+echo -e "${LBLUE} \n## Instalacja wtyczek Zsh ##\n ${RESET}"
+
+ZSH_PLUGIN_DIR="${ZSH_PLUGIN_DIR:-$HOME/.zsh}"
+
+# Tworzenie katalogu na wtyczki
+mkdir -p $ZSH_PLUGIN_DIR
+
+# Instalacja poszczególnych wtyczek Zsh
+git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_PLUGIN_DIR/zsh-autosuggestions
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $ZSH_PLUGIN_DIR/fast-syntax-highlighting
+git clone https://github.com/Aloxaf/fzf-tab $ZSH_PLUGIN_DIR/fzf-tab
+git clone https://github.com/zsh-users/zsh-direnv $ZSH_PLUGIN_DIR/zsh-direnv
+git clone https://github.com/zsh-users/zsh-interactive-cd $ZSH_PLUGIN_DIR/zsh-interactive-cd
+git clone https://github.com/zsh-users/zsh-completions $ZSH_PLUGIN_DIR/zsh-completions
+git clone https://github.com/zsh-users/zsh-history-substring-search $ZSH_PLUGIN_DIR/zsh-history-substring-search
+git clone https://github.com/zsh-users/zsh-navigation-tools $ZSH_PLUGIN_DIR/zsh-navigation-tools
+git clone https://github.com/zsh-users/zsh-autopair $ZSH_PLUGIN_DIR/zsh-autopair
+git clone https://github.com/MichaelAquilina/zsh-you-should-use $ZSH_PLUGIN_DIR/zsh-you-should-use
+
+# Dodanie wszystkich wtyczek do pliku .zshrc
+echo "source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
+echo "source $ZSH_PLUGIN_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >> ~/.zshrc
+echo "source $ZSH_PLUGIN_DIR/fzf-tab/fzf-tab.plugin.zsh" >> ~/.zshrc
+echo "source $ZSH_PLUGIN_DIR/zsh-direnv/zsh-direnv.plugin.zsh" >> ~/.zshrc
+echo "source $ZSH_PLUGIN_DIR/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh" >> ~/.zshrc
+echo "source $ZSH_PLUGIN_DIR/zsh-completions/zsh-completions.plugin.zsh" >> ~/.zshrc
+echo "source $ZSH_PLUGIN_DIR/zsh-history-substring-search/zsh-history-substring-search.zsh" >> ~/.zshrc
+echo "source $ZSH_PLUGIN_DIR/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh" >> ~/.zshrc
+echo "source $ZSH_PLUGIN_DIR/zsh-autopair/zsh-autopair.plugin.zsh" >> ~/.zshrc
+echo "source $ZSH_PLUGIN_DIR/zsh-you-should-use/you-should-use.plugin.zsh" >> ~/.zshrc
+
+# Instalacja Mega-CMD
 echo -e "${PURPLE} \nCzy chcesz zainstalować i skonfigurować Mega-CMD? (tak/nie) ${RESET}"
 read -r INSTALL_MEGA_CMD
 
@@ -70,7 +146,7 @@ else
   echo -e "${CYAN} \nPominięto instalację Mega-CMD. ${RESET}"
 fi
 
-# Zapytanie o konfigurację Samba
+# Konfiguracja Samba
 echo -e "${PURPLE} \nCzy chcesz skonfigurować Sambę? (tak/nie) ${RESET}"
 read -r CONFIGURE_SAMBA
 
@@ -98,7 +174,7 @@ else
   echo -e "${CYAN} \nPominięto konfigurację Samba. ${RESET}"
 fi
 
-# Zapytanie o konfigurację PostgreSQL
+# Konfiguracja PostgreSQL
 echo -e "${PURPLE} \nCzy chcesz skonfigurować PostgreSQL? (tak/nie) ${RESET}"
 read -r CONFIGURE_POSTGRESQL
 
@@ -107,97 +183,25 @@ if [[ "$CONFIGURE_POSTGRESQL" =~ ^[tT][aA][kK]$ ]]; then
   echo -e "${LBLUE} \n## Podaj hasło dla użytkownika postgres w PostgreSQL: ${RESET}"
   read -s POSTGRES_PASSWORD
   echo
-  sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '${POSTGRES_PASSWORD}';"
+  sudo -u postgres psql -c "ALTER USER postgres PASSWORD '$POSTGRES_PASSWORD';"
+  sudo systemctl enable postgresql
 else
   echo -e "${CYAN} \nPominięto konfigurację PostgreSQL. ${RESET}"
 fi
 
-# Zapytanie o konfigurację interfejsu dummy
-echo -e "${PURPLE} \nCzy chcesz dodać interfejs dummy za pomocą nmcli? (tak/nie) ${RESET}"
-read -r CONFIGURE_DUMMY
-
-if [[ "$CONFIGURE_DUMMY" =~ ^[tT][aA][kK]$ ]]; then
-  echo -e "${LBLUE} \n## Dodawanie interfejsu dummy za pomocą nmcli ##\n ${RESET}"
-  sudo nmcli con add type dummy con-name fake ifname fake0 ip4 1.2.3.4/24 gw4 1.2.3.1
-else
-  echo -e "${CYAN} \nPominięto konfigurację interfejsu dummy. ${RESET}"
-fi
-
-# Konfiguracja firewall
-sudo ufw enable
-sudo ufw allow OpenSSH
-sudo ufw allow 9090/tcp  # Port dla Cockpit
-sudo ufw allow Samba      # Porty dla Samba
-sudo ufw allow 5432/tcp   # Port dla PostgreSQL
-sudo ufw allow 8000/tcp   # Port dla Django
-sudo ufw reload
-sudo ufw status verbose
-
-# Motyw Dracula do MC
-mc_skin="$HOME/.local/share/mc/skins"
-mc_ini="$HOME/.config/mc/ini"
-
-if [ ! -d "$mc_skin" ]; then
-  echo "Tworzenie folderu na skórki."
-  mkdir -p "$mc_skin"
-fi
-
-wget -P "$mc_skin" "https://raw.githubusercontent.com/dracula/midnight-commander/master/skins/dracula256.ini"
-
-if [ ! -f "$mc_ini" ]; then
-  mc
-fi
-
-if [ -f "$mc_ini" ];then
-  echo -e "${LBLUE} \n## Zmiana skórki na Dracula w MC ##\n ${RESET}"
-  sed -i 's/^skin=.*/skin=dracula256/' "$mc_ini"
-fi
-
-# Instalacja Oh My Posh dla ZSH
-echo -e "${LBLUE} \n## Instalacja Oh My Posh ##\n ${RESET}"
-mkdir -p ~/.config/oh-my-posh
-sudo wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-sudo chmod +x /usr/local/bin/oh-my-posh
-
-# Konfiguracja motywu Oh My Posh
-echo -e "${LBLUE} \n## Konfiguracja motywu Oh My Posh ##\n ${RESET}"
-cp ubuntu/ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
-
-# Konfiguracja ZSH do używania Oh My Posh z lokalnym motywem
-echo '# Motyw do Oh-My-Posh' >> ~/.zshrc
-echo 'eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/theme.toml)"' >> ~/.zshrc
-
-# Wyłączenie powitania w zsh
-echo -e "${LBLUE} \n## Wyłączenie powitania w zsh ##\n ${RESET}"
-echo 'unset ZSH_GREETING' >> ~/.zshrc
-
-# Dodanie neofetch do pliku konfiguracyjnego ZSH
-echo '# NEOFETCH' >> ~/.zshrc
-echo 'neofetch' >> ~/.zshrc
-
-# Dodanie aliasu dla batcat jako bat
-echo '# Aliasy' >> ~/.zshrc
-echo 'alias bat="batcat"' >> ~/.zshrc
-echo 'alias cls="clear"' >> ~/.zshrc
-
-# Instalacja pyenv
-echo -e "${LBLUE} \n## Instalacja pyenv ##\n ${RESET}"
-curl https://pyenv.run | bash
-
-# Konfiguracja pyenv dla bash i zsh
-echo -e "${LBLUE} \n## Konfiguracja pyenv ##\n ${RESET}"
-echo '# Pyenv configuration' >> ~/.bashrc
-echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(pyenv init --path)"' >> ~/.bashrc
-echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-
-echo '# Pyenv configuration' >> ~/.zshrc
-echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc
-echo 'eval "$(pyenv init --path)"' >> ~/.zshrc
-echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+# Instalacja motywu Dracula dla Midnight Commander (MC)
+echo -e "${LBLUE} \n## Instalacja motywu Dracula dla MC ##\n ${RESET}"
+mkdir -p ~/.local/share/mc/skins
+git clone https://github.com/dracula/mc.git ~/.local/share/mc/skins/dracula
+echo 'DRACULA_THEME_PATH=~/.local/share/mc/skins/dracula/dracula.ini' >> ~/.zshrc
+echo 'export MC_SKIN=$DRACULA_THEME_PATH' >> ~/.zshrc
 
 # Zmiana powłoki na ZSH
 echo -e "${LBLUE} \n## Zmiana powłoki na ZSH ##\n ${RESET}"
 chsh -s $(which zsh)
 
 echo -e "${LBLUE} \n## Koniec skryptu ##\n ${RESET}"
+
+# Usunięcie folderu ubuntu
+echo -e "${LBLUE} \n## Usunięcie folderu ubuntu ##\n ${RESET}"
+rm -rf ~/ubuntu

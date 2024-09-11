@@ -106,6 +106,9 @@ git clone https://github.com/zsh-users/zsh-completions $ZSH_PLUGIN_DIR/zsh-compl
 git clone https://github.com/zsh-users/zsh-history-substring-search $ZSH_PLUGIN_DIR/zsh-history-substring-search
 git clone https://github.com/MichaelAquilina/zsh-you-should-use $ZSH_PLUGIN_DIR/zsh-you-should-use
 
+# Ścieżka do wtyczek
+echo "export ZSH_PLUGIN_DIR=~/.config/zsh/plugins"
+
 # Dodanie wszystkich wtyczek do pliku .zshrc
 echo "source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 echo "source $ZSH_PLUGIN_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >> ~/.zshrc
@@ -182,11 +185,24 @@ else
 fi
 
 # Instalacja motywu Dracula dla Midnight Commander (MC)
-echo -e "${LBLUE} \n## Instalacja motywu Dracula dla MC ##\n ${RESET}"
-mkdir -p ~/.local/share/mc/skins
-git clone https://github.com/dracula/mc.git ~/.local/share/mc/skins/dracula
-echo 'DRACULA_THEME_PATH=~/.local/share/mc/skins/dracula/dracula.ini' >> ~/.zshrc
-echo 'export MC_SKIN=$DRACULA_THEME_PATH' >> ~/.zshrc
+mc_skin="$HOME/.local/share/mc/skins"
+mc_ini="$HOME/.config/mc/ini"
+
+if [ ! -d "$mc_skin" ]; then
+  echo "Tworzenie folderu na skórki."
+  mkdir -p "$mc_skin"
+fi
+
+wget -P "$mc_skin" "https://raw.githubusercontent.com/dracula/midnight-commander/master/skins/dracula256.ini"
+
+if [ ! -f "$mc_ini" ]; then
+  mc
+fi
+
+if [ -f "$mc_ini" ];then
+  echo -e "${GREEN} \n## Zmiana skórki na Dracula w MC ##\n ${RESET}"
+  sed -i 's/^skin=.*/skin=dracula256/' "$mc_ini"
+fi
 
 # Zmiana powłoki na ZSH
 echo -e "${LBLUE} \n## Zmiana powłoki na ZSH ##\n ${RESET}"

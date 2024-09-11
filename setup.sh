@@ -54,7 +54,7 @@ sudo chmod +x /usr/local/bin/oh-my-posh
 
 # Konfiguracja motywu Oh My Posh
 echo -e "${LBLUE} \n## Konfiguracja motywu Oh My Posh ##\n ${RESET}"
-cp ubuntu/ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
+cp ~/ubuntu/ein-oh-my-posh.toml ~/.config/oh-my-posh/theme.toml
 
 # Konfiguracja ZSH do używania Oh My Posh z lokalnym motywem
 echo '# Motyw do Oh-My-Posh' >> ~/.zshrc

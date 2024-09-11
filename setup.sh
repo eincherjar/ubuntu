@@ -93,7 +93,7 @@ echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 # Instalacja wtyczek ZSH
 echo -e "${LBLUE} \n## Instalacja wtyczek Zsh ##\n ${RESET}"
 
-ZSH_PLUGIN_DIR="${ZSH_PLUGIN_DIR:-$HOME/.zsh}"
+ZSH_PLUGIN_DIR="${ZSH_PLUGIN_DIR:-$HOME/.config/zsh}"
 
 # Tworzenie katalogu na wtyczki
 mkdir -p $ZSH_PLUGIN_DIR
@@ -102,24 +102,16 @@ mkdir -p $ZSH_PLUGIN_DIR
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_PLUGIN_DIR/zsh-autosuggestions
 git clone https://github.com/zdharma-continuum/fast-syntax-highlighting $ZSH_PLUGIN_DIR/fast-syntax-highlighting
 git clone https://github.com/Aloxaf/fzf-tab $ZSH_PLUGIN_DIR/fzf-tab
-git clone https://github.com/zsh-users/zsh-direnv $ZSH_PLUGIN_DIR/zsh-direnv
-git clone https://github.com/zsh-users/zsh-interactive-cd $ZSH_PLUGIN_DIR/zsh-interactive-cd
 git clone https://github.com/zsh-users/zsh-completions $ZSH_PLUGIN_DIR/zsh-completions
 git clone https://github.com/zsh-users/zsh-history-substring-search $ZSH_PLUGIN_DIR/zsh-history-substring-search
-git clone https://github.com/zsh-users/zsh-navigation-tools $ZSH_PLUGIN_DIR/zsh-navigation-tools
-git clone https://github.com/zsh-users/zsh-autopair $ZSH_PLUGIN_DIR/zsh-autopair
 git clone https://github.com/MichaelAquilina/zsh-you-should-use $ZSH_PLUGIN_DIR/zsh-you-should-use
 
 # Dodanie wszystkich wtyczek do pliku .zshrc
 echo "source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 echo "source $ZSH_PLUGIN_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >> ~/.zshrc
 echo "source $ZSH_PLUGIN_DIR/fzf-tab/fzf-tab.plugin.zsh" >> ~/.zshrc
-echo "source $ZSH_PLUGIN_DIR/zsh-direnv/zsh-direnv.plugin.zsh" >> ~/.zshrc
-echo "source $ZSH_PLUGIN_DIR/zsh-interactive-cd/zsh-interactive-cd.plugin.zsh" >> ~/.zshrc
 echo "source $ZSH_PLUGIN_DIR/zsh-completions/zsh-completions.plugin.zsh" >> ~/.zshrc
 echo "source $ZSH_PLUGIN_DIR/zsh-history-substring-search/zsh-history-substring-search.zsh" >> ~/.zshrc
-echo "source $ZSH_PLUGIN_DIR/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh" >> ~/.zshrc
-echo "source $ZSH_PLUGIN_DIR/zsh-autopair/zsh-autopair.plugin.zsh" >> ~/.zshrc
 echo "source $ZSH_PLUGIN_DIR/zsh-you-should-use/you-should-use.plugin.zsh" >> ~/.zshrc
 
 # Instalacja Mega-CMD

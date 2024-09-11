@@ -141,9 +141,6 @@ git clone https://github.com/zsh-users/zsh-completions $ZSH_PLUGIN_DIR/zsh-compl
 git clone https://github.com/zsh-users/zsh-history-substring-search $ZSH_PLUGIN_DIR/zsh-history-substring-search
 git clone https://github.com/MichaelAquilina/zsh-you-should-use $ZSH_PLUGIN_DIR/zsh-you-should-use
 
-# Ścieżka do wtyczek
-echo "export ZSH_PLUGIN_DIR=~/.config/zsh/plugins" >> ~/.zshrc
-
 # Dodanie wszystkich wtyczek do pliku .zshrc
 echo "source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 echo "source $ZSH_PLUGIN_DIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh" >> ~/.zshrc

@@ -246,4 +246,13 @@ echo -e "${LBLUE} \n## Koniec skryptu ##\n ${RESET}"
 # Usunięcie folderu ubuntu
 echo -e "${LBLUE} \n## Usunięcie folderu ubuntu ##\n ${RESET}"
 rm -rf ~/ubuntu
+
+# Utworzenie folderu Projekty
+echo -e "${LBLUE} \n## Utworzenie folderu Projekty ##\n ${RESET}"
+mkdir Projekty
+
+# Utworzenie folderu Dokumenty
+echo -e "${LBLUE} \n## Utworzenie folderu Dokumenty ##\n ${RESET}"
+mkdir Dokumenty
+
 exec zsh

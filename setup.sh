@@ -246,3 +246,4 @@ echo -e "${LBLUE} \n## Koniec skryptu ##\n ${RESET}"
 # Usunięcie folderu ubuntu
 echo -e "${LBLUE} \n## Usunięcie folderu ubuntu ##\n ${RESET}"
 rm -rf ~/ubuntu
+exec zsh

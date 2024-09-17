@@ -237,6 +237,17 @@ if [ -f "$mc_ini" ];then
   sed -i 's/^skin=.*/skin=dracula256/' "$mc_ini"
 fi
 
+# Konfiguracja UFW
+echo -e "${LBLUE} \n## Konfiguracja UFW ##\n ${RESET}"
+sudo apt install -y ufw
+sudo ufw allow OpenSSH
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp  # HTTP
+sudo ufw allow 443/tcp # HTTPS
+sudo ufw allow 9090/tcp # Cockpit
+sudo ufw enable
+sudo ufw status verbose
+
 # Zmiana powłoki na ZSH
 echo -e "${LBLUE} \n## Zmiana powłoki na ZSH ##\n ${RESET}"
 chsh -s $(which zsh)

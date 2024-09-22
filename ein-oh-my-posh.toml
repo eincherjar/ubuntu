@@ -8,14 +8,14 @@ final_space = true
 [[blocks.segments]]
     type = "session"
     style = "plain"
-    foreground = "p:ein-00"
-    template = "╭─<#b8c0ff>[</>{{ if .SSHSession }}  {{ end }}"
+    foreground = "p:ein-03"
+    template = "╭─<#ffd966>[</>{{ if .SSHSession }}  {{ end }}"
 
 [[blocks.segments]]
     type = "os"
     style = "plain"
-    foreground = "p:ein-00"
-    template = "{{ .UserName }}@{{ .HostName }}<#b8c0ff>]</> <#b8c0ff>{{.Icon}}</>"
+    foreground = "p:ein-01"
+    template = "{{ .UserName }}@{{ .HostName }}<#ffd966>]</> <#ffd966>{{.Icon}}</>"
 
 [[blocks.segments]]
     type = "path"
@@ -37,9 +37,9 @@ final_space = true
 [[blocks.segments]]
     type = "status"
     style = "plain"
-    foreground = "p:ein-01"
+    foreground = "p:ein-03"
     foreground_templates = ["{{ if gt .Code 0 }}red{{ end }}"]
-    template = " {{ if gt .Code 0 }}✘ {{ else }}<#b8c0ff>󰸞</> {{ end }}{{ if eq ( gt .Code 0 ) .Segments.Path.Writable}} {{ end }}"
+    template = " {{ if gt .Code 0 }}✘ {{ else }}󰸞 {{ end }}{{ if eq ( gt .Code 0 ) .Segments.Path.Writable}} {{ end }}"
 
 [blocks.segments.properties]
     always_enabled = true
@@ -47,7 +47,7 @@ final_space = true
 [[blocks.segments]]
     type = "executiontime"
     style = "powerline"
-    foreground = "p:ein-00"
+    foreground = "p:ein-01"
     template = " <#fefefe></> {{ .FormattedMs }} "
 
 [properties]
@@ -58,8 +58,8 @@ final_space = true
 [[blocks.segments]]
     type = "git"
     style = "plain"
-    foreground = "p:ein-00"
-    template = "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <#b8c0ff></> {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} 󰆓 {{ .StashCount }}{{ end }}"
+    foreground = "p:ein-01"
+    template = "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} 󰆓 {{ .StashCount }}{{ end }}"
 
 [blocks.segments.properties]
     branch_icon = " "
@@ -70,19 +70,19 @@ final_space = true
 [[blocks.segments]]
     type = "python"
     style = "powerline"
-    foreground = "p:ein-00"
+    foreground = "p:ein-01"
     fetch_virtual_env = true
     fetch_version = true
-    template = " <#ebebeb> </> {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}"
+    template = " <#ffd966> </> {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}"
 
 [[blocks.segments]]
     type = "time"
     style = "plain"
-    foreground = "p:ein-00"
+    foreground = "p:ein-01"
     template = " {{ .CurrentDate | date .Format }} "
 
 [blocks.segments.properties]
-    time_format = " <#ebebeb> </> 15:04:05 <#ebebeb> </> 2006-01-02"
+    time_format = " <#ffd966> </> 15:04:05 <#ffd966> </> 2006-01-02"
 
 [[blocks]]
     type = "prompt"
@@ -92,10 +92,10 @@ final_space = true
 [[blocks.segments]]
     type = "text"
     style = "plain"
-    foreground = "p:ein-00"
-    template = "<p:ein-00>╰─󰅂</>"
+    foreground = "p:ein-01"
+    template = "<p:ein-03>╰─󰅂</>"
 
 [palette]
-    ein-00 = "#b8c0ff"
-    ein-01 = "#b8c0ff"
+    ein-01 = "#7e7e7e"
     ein-02 = "#e5e5e5"
+    ein-03 = "#ffd966"

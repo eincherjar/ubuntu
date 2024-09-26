@@ -48,7 +48,7 @@ final_space = true
     type = "executiontime"
     style = "powerline"
     foreground = "p:ein-01"
-    template = " <#fefefe></> {{ .FormattedMs }} "
+    template = " <#ffd966></> {{ .FormattedMs }} "
 
 [properties]
     threshold = 500

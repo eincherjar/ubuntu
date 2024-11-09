@@ -106,7 +106,7 @@ echo '' >> ~/.zshrc
 echo '# Aliasy' >> ~/.zshrc
 echo 'alias bat="batcat"' >> ~/.zshrc
 echo 'alias cls="clear"' >> ~/.zshrc
-echo 'alias ls="eza --long --icons=always --group-directories-first --all --header --group"' >> ~/.zshrc
+echo 'alias ls="eza --long --icons=always --group-directories-first --all --header --group -H --time-style=long-iso"' >> ~/.zshrc
 echo '' >> ~/.zshrc
 
 # Instalacja pyenv

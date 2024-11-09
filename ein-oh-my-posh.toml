@@ -1,101 +1,116 @@
-version = 2
+version = 3
 final_space = true
 
-[[blocks]]
-    type = "prompt"
-    alignment = "left"
-
-[[blocks.segments]]
-    type = "session"
-    style = "plain"
-    foreground = "p:ein-03"
-    template = "╭─<#ffd966>[</>{{ if .SSHSession }}  {{ end }}"
-
-[[blocks.segments]]
-    type = "os"
-    style = "plain"
-    foreground = "p:ein-01"
-    template = "{{ .UserName }}@{{ .HostName }}<#ffd966>]</> <#ffd966>{{.Icon}}</>"
-
-[[blocks.segments]]
-    type = "path"
-    style = "plain"
-    foreground = "p:ein-02"
-
-[blocks.segments.properties]
-    folder_icon = " "
-    folder_separator_icon = " 󰅂 "
-    home_icon = ""
-    max_depth = 4
-    style = "agnoster_short"
-
-
-[[blocks]]
-    type = "prompt"
-    alignment = "right"
-
-[[blocks.segments]]
-    type = "status"
-    style = "plain"
-    foreground = "p:ein-03"
-    foreground_templates = ["{{ if gt .Code 0 }}red{{ end }}"]
-    template = " {{ if gt .Code 0 }}✘ {{ else }}󰸞 {{ end }}{{ if eq ( gt .Code 0 ) .Segments.Path.Writable}} {{ end }}"
-
-[blocks.segments.properties]
-    always_enabled = true
-
-[[blocks.segments]]
-    type = "executiontime"
-    style = "powerline"
-    foreground = "p:ein-01"
-    template = " <#ffd966></> {{ .FormattedMs }} "
-
-[properties]
-    threshold = 500
-    style = "austin"
-    always_enabled = true
-
-[[blocks.segments]]
-    type = "git"
-    style = "plain"
-    foreground = "p:ein-01"
-    template = "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} 󰆓 {{ .StashCount }}{{ end }}"
-
-[blocks.segments.properties]
-    branch_icon = " "
-    fetch_stash_count = true
-    fetch_status = true
-    fetch_worktree_count = true
-
-[[blocks.segments]]
-    type = "python"
-    style = "powerline"
-    foreground = "p:ein-01"
-    fetch_virtual_env = true
-    fetch_version = true
-    template = " <#ffd966> </> {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}"
-
-[[blocks.segments]]
-    type = "time"
-    style = "plain"
-    foreground = "p:ein-01"
-    template = " {{ .CurrentDate | date .Format }} "
-
-[blocks.segments.properties]
-    time_format = " <#ffd966> </> 15:04:05 <#ffd966> </> 2006-01-02"
-
-[[blocks]]
-    type = "prompt"
-    alignment = "left"
-    newline = true
-
-[[blocks.segments]]
-    type = "text"
-    style = "plain"
-    foreground = "p:ein-01"
-    template = "<p:ein-03>╰─󰅂</>"
-
 [palette]
-    ein-01 = "#7e7e7e"
-    ein-02 = "#e5e5e5"
-    ein-03 = "#ffd966"
+  bright-blue = '#6A8FDB'
+  bright-coral = '#FF6F61'
+  bright-green = '#77DD77'
+  bright-orange = '#FFB347'
+  bright-pink = '#FF6F91'
+  bright-purple = '#BA55D3'
+  bright-yellow = '#FFD700'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+
+  [[blocks.segments]]
+    template = '╭─<#FF6F91>[</>{{ if .SSHSession }}  {{ end }}'
+    foreground = 'p:bright-orange'
+    type = 'session'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '<#FF6F61>{{.Icon}}</> {{ .UserName }}@{{ .HostName }}<#FF6F91>]</>'
+    foreground = 'p:bright-coral'
+    type = 'os'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    foreground = 'p:bright-green'
+    type = 'path'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      folder_icon = ' '
+      folder_separator_icon = '󰅂 '
+      home_icon = ''
+      max_depth = 4
+      style = 'agnoster_short'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'right'
+
+  [[blocks.segments]]
+    template = ' {{ if gt .Code 0 }}✘ {{ else }}󰸞 {{ end }}{{ if eq ( gt .Code 0 ) .Segments.Path.Writable}} {{ end }}'
+    foreground = 'p:bright-yellow'
+    type = 'status'
+    style = 'plain'
+    foreground_templates = ['{{ if gt .Code 0 }}#FF5252{{ end }}']
+
+    [blocks.segments.properties]
+      always_enabled = true
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = ' <#FFB347></> {{ .FormattedMs }} '
+    foreground = 'p:bright-orange'
+    type = 'executiontime'
+    style = 'powerline'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = '{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} 󰆓 {{ .StashCount }}{{ end }}'
+    foreground = 'p:bright-blue'
+    type = 'git'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      branch_icon = ' '
+      cache_duration = 'none'
+      fetch_stash_count = true
+      fetch_status = true
+      fetch_worktree_count = true
+
+  [[blocks.segments]]
+    template = ' <#BA55D3> </> {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}'
+    foreground = 'p:bright-purple'
+    type = 'python'
+    style = 'powerline'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+
+  [[blocks.segments]]
+    template = ' {{ .CurrentDate | date .Format }} '
+    foreground = 'p:bright-coral'
+    type = 'time'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      time_format = ' <p:bright-orange> </> 15:04:05 <p:bright-orange> </> 2006-01-02'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    template = '<p:bright-orange>╰─󰅂</>'
+    foreground = 'p:bright-green'
+    type = 'text'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'

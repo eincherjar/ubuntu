@@ -2,115 +2,115 @@ version = 3
 final_space = true
 
 [palette]
-  bright-blue = '#6A8FDB'
-  bright-coral = '#FF6F61'
-  bright-green = '#77DD77'
-  bright-orange = '#FFB347'
-  bright-pink = '#FF6F91'
-  bright-purple = '#BA55D3'
-  bright-yellow = '#FFD700'
+primary-green = '#A8D5BA'  # pastelowy, stonowany zielony
+primary-yellow = '#FFD782' # ciepły, pastelowy żółty
+primary-orange = '#FFA573' # delikatny pomarańczowy z pastelowym odcieniem
 
 [[blocks]]
-  type = 'prompt'
-  alignment = 'left'
+type = 'prompt'
+alignment = 'left'
 
-  [[blocks.segments]]
-    template = '╭─<#FF6F91>[</>{{ if .SSHSession }}  {{ end }}'
-    foreground = 'p:bright-orange'
-    type = 'session'
-    style = 'plain'
+[[blocks.segments]]
+template = ' {{ if .SSHSession }}  {{ end }}'
+foreground = 'p:primary-orange'
+type = 'session'
+style = 'plain'
 
-    [blocks.segments.properties]
-      cache_duration = 'none'
+[blocks.segments.properties]
+cache_duration = 'none'
 
-  [[blocks.segments]]
-    template = '<#FF6F61>{{.Icon}}</> {{ .UserName }}@{{ .HostName }}<#FF6F91>]</>'
-    foreground = 'p:bright-coral'
-    type = 'os'
-    style = 'plain'
+[[blocks.segments]]
+template = '<#FFA573>[</>{{ .UserName }}@{{ .HostName }}<#FFA573>]</> {{.Icon}}'
+foreground = 'p:primary-orange'
+type = 'os'
+style = 'plain'
 
-    [blocks.segments.properties]
-      cache_duration = 'none'
+[blocks.segments.properties]
+cache_duration = 'none'
 
-  [[blocks.segments]]
-    foreground = 'p:bright-green'
-    type = 'path'
-    style = 'plain'
+[[blocks.segments]]
+foreground = 'p:primary-green'
+type = 'path'
 
-    [blocks.segments.properties]
-      cache_duration = 'none'
-      folder_icon = ' '
-      folder_separator_icon = '󰅂 '
-      home_icon = ''
-      max_depth = 4
-      style = 'agnoster_short'
-
-[[blocks]]
-  type = 'prompt'
-  alignment = 'right'
-
-  [[blocks.segments]]
-    template = ' {{ if gt .Code 0 }}✘ {{ else }}󰸞 {{ end }}{{ if eq ( gt .Code 0 ) .Segments.Path.Writable}} {{ end }}'
-    foreground = 'p:bright-yellow'
-    type = 'status'
-    style = 'plain'
-    foreground_templates = ['{{ if gt .Code 0 }}#FF5252{{ end }}']
-
-    [blocks.segments.properties]
-      always_enabled = true
-      cache_duration = 'none'
-
-  [[blocks.segments]]
-    template = ' <#FFB347></> {{ .FormattedMs }} '
-    foreground = 'p:bright-orange'
-    type = 'executiontime'
-    style = 'powerline'
-
-    [blocks.segments.properties]
-      cache_duration = 'none'
-
-  [[blocks.segments]]
-    template = '{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} 󰆓 {{ .StashCount }}{{ end }}'
-    foreground = 'p:bright-blue'
-    type = 'git'
-    style = 'plain'
-
-    [blocks.segments.properties]
-      branch_icon = ' '
-      cache_duration = 'none'
-      fetch_stash_count = true
-      fetch_status = true
-      fetch_worktree_count = true
-
-  [[blocks.segments]]
-    template = ' <#BA55D3> </> {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}'
-    foreground = 'p:bright-purple'
-    type = 'python'
-    style = 'powerline'
-
-    [blocks.segments.properties]
-      cache_duration = 'none'
-
-  [[blocks.segments]]
-    template = ' {{ .CurrentDate | date .Format }} '
-    foreground = 'p:bright-coral'
-    type = 'time'
-    style = 'plain'
-
-    [blocks.segments.properties]
-      cache_duration = 'none'
-      time_format = ' <p:bright-orange> </> 15:04:05 <p:bright-orange> </> 2006-01-02'
+[blocks.segments.properties]
+cache_duration = 'none'
+folder_separator_icon = ' '
+home_icon = ''
+max_depth = 5
+style = 'agnoster_short'
+right_format = '<p:primary-yellow>%s</>'
 
 [[blocks]]
-  type = 'prompt'
-  alignment = 'left'
-  newline = true
+type = 'prompt'
+alignment = 'right'
 
-  [[blocks.segments]]
-    template = '<p:bright-orange>╰─󰅂</>'
-    foreground = 'p:bright-green'
-    type = 'text'
-    style = 'plain'
+[[blocks.segments]]
+template = ' {{ if gt .Code 0 }}✘ {{ else }}󰸞 {{ end }}{{ if eq ( gt .Code 0 ) .Segments.Path.Writable}} {{ end }}'
+foreground = 'p:primary-yellow'
+type = 'status'
+style = 'plain'
+foreground_templates = ['{{ if gt .Code 0 }}#FF7373{{ end }}']
 
-    [blocks.segments.properties]
-      cache_duration = 'none'
+[blocks.segments.properties]
+always_enabled = true
+cache_duration = 'none'
+
+[[blocks.segments]]
+template = ' <#FFA573></> {{ .FormattedMs }} '
+foreground = 'p:primary-orange'
+type = 'executiontime'
+style = 'powerline'
+
+[blocks.segments.properties]
+cache_duration = 'none'
+
+[[blocks.segments]]
+template = ' {{ .CurrentDate | date .Format }}'
+foreground = 'p:primary-green'
+type = 'time'
+style = 'plain'
+
+[blocks.segments.properties]
+cache_duration = 'none'
+time_format = '<p:primary-orange> </>15:04:05 <p:primary-orange> </>2006-01-02'
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+[[blocks.segments]]
+template = '<p:primary-green> </>'
+foreground = 'p:primary-green'
+type = 'text'
+style = 'plain'
+
+[blocks.segments.properties]
+cache_duration = 'none'
+
+[[blocks]]
+alignment = "right"
+type = "rprompt"
+
+[[blocks.segments]]
+template = '{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} <#A8D5BA>🐍</> {{ .Full }}{{ end }}{{ end }} | '
+foreground = 'p:primary-green'
+type = 'python'
+style = 'powerline'
+
+[blocks.segments.properties]
+fetch_virtual_env = true
+folder_name_fallback = false
+
+[[blocks.segments]]
+template = '{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} <p:primary-orange>{{ .BranchStatus }}{{ end }}</>{{ if .Working.Changed }} <p:primary-orange></> {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} <p:primary-orange></> {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} <p:primary-orange>󰆓</> {{ .StashCount }}{{ end }}'
+foreground = 'p:primary-green'
+type = 'git'
+style = 'plain'
+
+[blocks.segments.properties]
+branch_icon = '<p:primary-orange></> '
+cache_duration = 'none'
+fetch_stash_count = true
+fetch_status = true
+fetch_worktree_count = true

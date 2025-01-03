@@ -98,9 +98,9 @@ echo "zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime
 echo '' >> ~/.zshrc
 
 # Dodanie neofetch do pliku konfiguracyjnego ZSH
-echo '# NEOFETCH' >> ~/.zshrc
-echo 'neofetch' >> ~/.zshrc
-echo '' >> ~/.zshrc
+# echo '# NEOFETCH' >> ~/.zshrc
+# echo 'neofetch' >> ~/.zshrc
+# echo '' >> ~/.zshrc
 
 # Dodanie aliasu dla batcat jako bat
 echo '# Aliasy' >> ~/.zshrc
@@ -110,21 +110,21 @@ echo 'alias ls="eza --long --icons=always --group-directories-first --all --head
 echo '' >> ~/.zshrc
 
 # Instalacja pyenv
-echo -e "${LBLUE} \n## Instalacja pyenv ##\n ${RESET}"
-curl https://pyenv.run | bash
+# echo -e "${LBLUE} \n## Instalacja pyenv ##\n ${RESET}"
+# curl https://pyenv.run | bash
 
 # Konfiguracja pyenv dla bash i zsh
-echo -e "${LBLUE} \n## Konfiguracja pyenv ##\n ${RESET}"
-echo '# Pyenv configuration' >> ~/.bashrc
-echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(pyenv init --path)"' >> ~/.bashrc
-echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+# echo -e "${LBLUE} \n## Konfiguracja pyenv ##\n ${RESET}"
+# echo '# Pyenv configuration' >> ~/.bashrc
+# echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+# echo 'eval "$(pyenv init --path)"' >> ~/.bashrc
+# echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 
-echo '# Pyenv configuration' >> ~/.zshrc
-echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc
-echo 'eval "$(pyenv init --path)"' >> ~/.zshrc
-echo 'eval "$(pyenv init -)"' >> ~/.zshrc
-echo '' >> ~/.zshrc
+# echo '# Pyenv configuration' >> ~/.zshrc
+# echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc
+# echo 'eval "$(pyenv init --path)"' >> ~/.zshrc
+# echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+# echo '' >> ~/.zshrc
 
 # Instalacja wtyczek ZSH
 echo -e "${LBLUE} \n## Instalacja wtyczek Zsh ##\n ${RESET}"

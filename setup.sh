@@ -109,6 +109,10 @@ echo 'alias cls="clear"' >> ~/.zshrc
 echo 'alias ls="eza --long --icons=always --group-directories-first --all --header --group -H --time-style=long-iso"' >> ~/.zshrc
 echo '' >> ~/.zshrc
 
+# Instalacja UV
+# echo -e "${LBLUE} \n## Instalacja UV ##\n ${RESET}"
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
 # Instalacja pyenv
 # echo -e "${LBLUE} \n## Instalacja pyenv ##\n ${RESET}"
 # curl https://pyenv.run | bash
@@ -258,12 +262,16 @@ echo -e "${LBLUE} \n## Koniec skryptu ##\n ${RESET}"
 echo -e "${LBLUE} \n## Usunięcie folderu ubuntu ##\n ${RESET}"
 rm -rf ~/ubuntu
 
+# Restart powłoki
+# echo -e "${LBLUE} \n## Restart powłoki ##\n ${RESET}"
+# source ~/.zshrc
+
 # Utworzenie folderu Projekty
-echo -e "${LBLUE} \n## Utworzenie folderu Projekty ##\n ${RESET}"
-mkdir Projekty
+# echo -e "${LBLUE} \n## Utworzenie folderu Projekty ##\n ${RESET}"
+# mkdir Projekty
 
 # Utworzenie folderu Dokumenty
-echo -e "${LBLUE} \n## Utworzenie folderu Dokumenty ##\n ${RESET}"
-mkdir Dokumenty
+# echo -e "${LBLUE} \n## Utworzenie folderu Dokumenty ##\n ${RESET}"
+# mkdir Dokumenty
 
 exec zsh

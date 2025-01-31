@@ -26,7 +26,7 @@ Poniżej znajduje się lista pakietów instalowanych przez skrypt:
 18. **fzf** - narzędzie do wyszukiwania w terminalu.
 19. **qemu-guest-agent** - agent dla maszyn wirtualnych QEMU.
 
-Skrypt dodatkowo instaluje i konfiguruje `pyenv`, `Oh My Posh`, oraz różne wtyczki dla `zsh`.
+Skrypt dodatkowo instaluje i konfiguruje `Oh My Posh`, oraz różne wtyczki dla `zsh`.
 
 ## Funkcjonalność
 
@@ -36,7 +36,7 @@ Skrypt dodatkowo instaluje i konfiguruje `pyenv`, `Oh My Posh`, oraz różne wty
 2. **Instalacja niezbędnych pakietów**
    - Instalacja `git`, `curl`, `btop`, `python3`, `zsh`, `cockpit`, `samba`, `bat`, `neofetch`, `openssh-server`, `postgresql`, `mc` i innych.
 
-3. **Konfiguracja `pyenv`**
+3. **Konfiguracja `pyenv` nieaktualne**
    - Instalacja `pyenv` i jego konfiguracja dla `bash` i `zsh`.
    - Instalacja najnowszej wersji Pythona i ustawienie jej jako globalnej.
 
